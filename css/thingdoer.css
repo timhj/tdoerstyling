@@ -6,7 +6,7 @@ body {
 	margin: auto; /* center in viewport */
 	font-family: "Arial Narrow", Arial, sans-serif;
 	font-size: 18px;
-	/*background-image:url(/media/img/background.png);*/
+	/*background-image:url(../img/background.png);*/
 	color: #565555; 
 }
 
@@ -733,7 +733,7 @@ div.checkbox label,#field-container-cost div.radio label {
 	background-size:auto 375px;
 	background-position: .75em 0;
 	background-repeat: no-repeat;
-	background-image: url(/media/img/label-backgrounds/spritesv7.png);
+	background-image: url(../img/label-backgrounds/spritesv7.png);
 }
 
 #field-container-cost div.radio label {
@@ -1444,7 +1444,7 @@ table.content tr.odd,table.content td.odd {
 
 ul.menu {
 	background-color: #f4f4f4;
-	background-image: url("/media/img/users/menubar-background.png");
+	background-image: url("../img/users/menubar-background.png");
 	background-repeat: repeat-x;
 	border: 0px none;
 }
@@ -1514,7 +1514,7 @@ ul.menu li.active a,ul.menu li a:hover {
 	background-color: #f2f1ee;
 	border-bottom: none;
 	border-bottom-width: 5px;
-	background-image: url("/media/img/users/boxbar-background.png");
+	background-image: url("../img/users/boxbar-background.png");
 	font-size: 13px;
 }
 
@@ -1649,7 +1649,7 @@ input.half {
 
 .pagination a,.pagination span {
 	background-color: #f4f4f4;
-	background-image: url("/media/img/users/button-background.png");
+	background-image: url("../img/users/button-background.png");
 	color: #111;
 	text-align: center;
 	min-width: 15px;
@@ -1675,7 +1675,7 @@ input.half {
 }
 
 .pagination a:active {
-	/*  background-image: url("/media/img/users/button-background-active.png"); */
+	/*  background-image: url("../img/users/button-background-active.png"); */
 	outline: none;
 }
 /* pagination */
@@ -1713,42 +1713,42 @@ a.associated_account {
 }
 
 a.facebook {
-	background: #FFF url(/media/img/users/small/facebook_gray.png) no-repeat
+	background: #FFF url(../img/users/small/facebook_gray.png) no-repeat
 		center center;
 }
 
 a.facebook:hover {
-	background: #FFF url(/media/img/users/small/facebook.png) no-repeat
+	background: #FFF url(../img/users/small/facebook.png) no-repeat
 		center center;
 }
 
 a.twitter {
-	background: #FFF url(/media/img/users/small/twitter_gray.png) no-repeat
+	background: #FFF url(../img/users/small/twitter_gray.png) no-repeat
 		center center;
 }
 
 a.twitter:hover {
-	background: #FFF url(/media/img/users/small/twitter.png) no-repeat
+	background: #FFF url(../img/users/small/twitter.png) no-repeat
 		center center;
 }
 
 a.google {
-	background: #FFF url(/media/img/users/small/google_gray.png) no-repeat
+	background: #FFF url(../img/users/small/google_gray.png) no-repeat
 		center center
 }
 
 a.google:hover {
-	background: #FFF url(/media/img/users/small/google.png) no-repeat center
+	background: #FFF url(../img/users/small/google.png) no-repeat center
 		center
 }
 
 a.yahoo {
-	background: #FFF url(/media/img/users/small/yahoo_gray.png) no-repeat
+	background: #FFF url(../img/users/small/yahoo_gray.png) no-repeat
 		center center;
 }
 
 a.yahoo:hover {
-	background: #FFF url(/media/img/users/small/yahoo.png) no-repeat center
+	background: #FFF url(../img/users/small/yahoo.png) no-repeat center
 		center;
 }
 
