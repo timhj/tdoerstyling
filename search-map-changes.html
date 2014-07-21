@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> "Food" things to do</title>
+        <meta name='description' content="" />
+              
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+		        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssnormalize/cssnormalize-min.css">
+    	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    	<link rel="stylesheet" type="text/css" href="./css/thingdoer.css">
+		
+        <script type='text/javascript' src="http://code.jquery.com/jquery-latest.min.js"></script>
+                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&libraries=places&sensor=true"></script>
+                <script type='text/javascript' src="./js/standard.js"></script>
+        <script type='text/javascript' src="./js/modernizr.js"></script>
+        <script type='text/javascript' src="./js/timepicker.js"></script>
+        <script type='text/javascript' src="./js/rangeinput.js"></script>
+        <script type='text/javascript' src="./js/aspect-correct.js"></script>
+        <script type='text/javascript' src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+    	<script type='text/javascript' src="http://yui.yahooapis.com/3.9.1/build/yui/yui-min.js"></script>
+    </head>
+   
+    <body class="thing">
+    	<script type="text/javascript">
+    	$(document).ready(function() {		
+			if(!Modernizr.inputtypes.time) {
+				$('input[type=time]').timePicker(); 
+			}
+			if(!Modernizr.inputtypes.range) {
+				$(':range').rangeinput();
+			}
+			$('span#close-modal,#modal-overlay').click(function(){
+				$('#modal-overlay,#modal-window').fadeOut();
+			});
+			$(".image-cropper img").each(function() {
+				$(this).load(function() {
+				    FixImage(false, $(this).closest('div'), this); // fix the aspect ration on the image relative to its closest parent div
+				}).each(function(){
+					if(this.complete) {
+						$(this).trigger('load');
+					}
+				});
+			});
+			$('.thing-to-do-feeder.has-image').each(function(){
+			$(this).find('img.thumbnail').wrap('<a href="'+$(this).find('span.thing-feeder-title a').attr('href')+'"></a>');				
+			});
+			$('.things-to-do-wrapper .thing-single:has(img.promo),.nearby-things .thing-single:has(img.promo)').each(function(){
+				$(this).find('img.promo').wrap('<a href="'+$(this).find('h2 a').attr('href')+'"></a>');				
+			});
+			
+    	});
+    	function modal(info_type){
+    		$.ajax({
+    			url: '/autocomplete/phrase/',
+        		data: { term: info_type,
+            			header_and_content: 'true'
+        		},
+        		success: function ( data ) {
+        			output = JSON.parse(data);
+    				$('#modal-window .modal-header h2').html(output.heading);
+    	    		$('#modal-window .modal-content').html(output.content);
+    			},
+    			});
+    		$('#modal-overlay,#modal-window').fadeIn();
+		}
+		
+    	</script>
+    	<div id="page">
+    		<div id="header">
+    			<div id="things-to-do-links" class="yui3-g">
+    				<span class="yui3-u" id="logo-title">thingdoer <sup>209</sup></span>
+    				<span class="welcome-back yui3-u">
+    					    				<a href="/" title="Things to do" class="">Things to do</a> - 
+
+	    				    				<a href="/find-things-to-do/" title="Browse things" class="">Browse things</a> - 
+
+	    				    				<a href="/thing/edit/" title="Add things" class="">Add things</a> - 
+
+	    			    				 
+						<a href="/user/register">Register</a> - 
+						<a href="/user/login">Log in</a>					 
+					</span> <!-- // welcome-back -->
+					<span class="yui3-u">
+	    				<!-- // left float top bar -->
+    				</span>
+    			</div>
+    			<div id="main-search-box" class="yui3-g">
+    				<div class="logo yui3-u-3-8">
+    					<a href="/" title="things to do"><span class="logo-image-will-replace">thingdoer</span></a>
+    				</div>
+    				<div id="search-inputs" class="yui3-u-5-8">
+    					<div class="content yui3-g">
+	    					<form action="/find-things-to-do/" method="get">
+		    					<input type="text" placeholder="find something to do..." name="like" class="yui3-u-4-5" />
+		    					<button type="submit" class="button yui3-u-1-5">search</button>
+		    				</form>
+    					</div>
+	    				<div class="footer">
+	    					Popular searches: 
+	    						    						    					<a href="/find-things-to-do/?like=sydney">Things to do in sydney</a>,
+	    						    					<a href="/find-things-to-do/?like=walks">Things to do like walks</a>,
+	    						    					<a href="/find-things-to-do/?like=food">Things to do for food</a>,
+	    						    				</div>
+    				</div>
+    			</div> <!-- // #main-search-box -->
+	    		<div class="navigation">
+	    			<ul id="nav" class="yui3-g">
+	    				    				<li class="yui3-u-1-3 ">
+	    					<div class="menu-button">
+	    						<a href="/" title="Things to do">Things to do</a>
+	    					</div>
+	    				</li>
+	    				    				<li class="yui3-u-1-3 ">
+	    					<div class="menu-button">
+	    						<a href="/find-things-to-do/" title="Browse things">Browse things</a>
+	    					</div>
+	    				</li>
+	    				    				<li class="yui3-u-1-3 ">
+	    					<div class="menu-button">
+	    						<a href="/thing/edit/" title="Add things">Add things</a>
+	    					</div>
+	    				</li>
+	    				    			</ul>
+	    		</div> <!-- // #navigation -->
+    		</div> <!-- // #header -->
+    		<div class="block">
+	    		<div id="content-wrapper">
+	    				    		<div class="content">
+				    	<div class="main-heading">
+				    		<h1>34 "Food" things to&nbsp;do</h1>
+				    	</div> <!-- // .main-heading -->
+				    					    					    	<div class="user-notifications">
+																		    	</div> <!-- // #user-notifications -->
+				       
+<div id="things-to-do-location-refine-bar" class="yui3-g">
+	<div class="yui3-u-2-5">Looking for a thing in a place? Type your location here: </div>
+	<div class="yui3-u-3-5"><input type="text" id="place_auto_complete_input" /></div>
+</div>
+
+	<div id="things-to-do-collection-nav-bar" class="yui3-g">
+	<div class="yui3-u-4-5">
+				Sort by: 
+		<a href="/find-things-to-do/?like=food&map=true" title="Most relevant search results">Latest</a>
+		| <a href="/find-things-to-do/?like=food&map=true&sort=score" title="top rated search results">Top rated</a>
+		| <a href="/find-things-to-do/?like=food&map=true&sort=views" title="most viewed  search results">Most viewed</a>
+		| <a href="/find-things-to-do/?like=food&map=true&sort=comments" title="most commented search results">Most commented</a>
+					</div>
+	<div class="yui3-u-1-5">
+		<div class="things-to-do-list-options">
+					<a href="/find-things-to-do/?like=food&map=false" rel="no-follow" class="button">Back to list view</a>
+						</div>
+	</div>
+</div>
+		<div class="module advanced-search">
+		<div class="module-header">
+			<h4><span id="search-toggle">+</span> Refine search</h4>
+		</div>
+		<div class="module-content">
+			<form action="/find-things-to-do/" method="get">
+								<input type="hidden" name="like" value="food">
+								<fieldset id="money-opts">
+										<legend>Cost</legend>
+					<label for="cost_free">free </label><input type="radio" name="cost_option" id="cost_free" value="cost_free"  />
+					<label for="not_free">under </label><input type="radio" name="cost_option" id="not_free" value="not_free"  />
+					<input name="cost" placeholder="eg. 100" id="cost" value="">
+				</fieldset>
+				<fieldset id="weather-opts">
+					<legend>Weather</legend>
+										<label class="checkbox bad weather" id="weather-opt-3">
+						<div class="label-content">
+							<input type="checkbox" value="3" name="weathers[]" > <span class="opt-label">Bad weather</span>
+						</div>
+					</label>
+										<label class="checkbox good weather" id="weather-opt-8">
+						<div class="label-content">
+							<input type="checkbox" value="8" name="weathers[]" > <span class="opt-label">Good weather</span>
+						</div>
+					</label>
+									</fieldset>		
+				<!-- <fieldset id="type-opts">
+					<legend>Tag</legend>
+									<label class="checkbox romantic" id="tag-opt-1">
+						<div class="label-content">
+							<input type="checkbox" value="1" name="tags[]" > <span class="opt-label">Romantic</span>
+						</div>
+					</label>
+										<label class="checkbox family" id="tag-opt-2">
+						<div class="label-content">
+							<input type="checkbox" value="2" name="tags[]" > <span class="opt-label">Family</span>
+						</div>
+					</label>
+										<label class="checkbox kids" id="tag-opt-3">
+						<div class="label-content">
+							<input type="checkbox" value="3" name="tags[]" > <span class="opt-label">Kids</span>
+						</div>
+					</label>
+										<label class="checkbox pet friendly" id="tag-opt-4">
+						<div class="label-content">
+							<input type="checkbox" value="4" name="tags[]" > <span class="opt-label">Pet Friendly</span>
+						</div>
+					</label>
+										<label class="checkbox fitness" id="tag-opt-5">
+						<div class="label-content">
+							<input type="checkbox" value="5" name="tags[]" > <span class="opt-label">Fitness</span>
+						</div>
+					</label>
+										<label class="checkbox spiritual" id="tag-opt-6">
+						<div class="label-content">
+							<input type="checkbox" value="6" name="tags[]" > <span class="opt-label">Spiritual</span>
+						</div>
+					</label>
+										<label class="checkbox health" id="tag-opt-7">
+						<div class="label-content">
+							<input type="checkbox" value="7" name="tags[]" > <span class="opt-label">Health</span>
+						</div>
+					</label>
+										<label class="checkbox educational" id="tag-opt-8">
+						<div class="label-content">
+							<input type="checkbox" value="8" name="tags[]" > <span class="opt-label">Educational</span>
+						</div>
+					</label>
+										<label class="checkbox cultural" id="tag-opt-9">
+						<div class="label-content">
+							<input type="checkbox" value="9" name="tags[]" > <span class="opt-label">Cultural</span>
+						</div>
+					</label>
+										<label class="checkbox nature" id="tag-opt-10">
+						<div class="label-content">
+							<input type="checkbox" value="10" name="tags[]" > <span class="opt-label">Nature</span>
+						</div>
+					</label>
+										<label class="checkbox water" id="tag-opt-11">
+						<div class="label-content">
+							<input type="checkbox" value="11" name="tags[]" > <span class="opt-label">Water</span>
+						</div>
+					</label>
+										<label class="checkbox sport" id="tag-opt-12">
+						<div class="label-content">
+							<input type="checkbox" value="12" name="tags[]" > <span class="opt-label">Sport</span>
+						</div>
+					</label>
+										<label class="checkbox extreme" id="tag-opt-13">
+						<div class="label-content">
+							<input type="checkbox" value="13" name="tags[]" > <span class="opt-label">Extreme</span>
+						</div>
+					</label>
+										<label class="checkbox food & drink" id="tag-opt-14">
+						<div class="label-content">
+							<input type="checkbox" value="14" name="tags[]" > <span class="opt-label">Food & Drink</span>
+						</div>
+					</label>
+										<label class="checkbox entertainment" id="tag-opt-15">
+						<div class="label-content">
+							<input type="checkbox" value="15" name="tags[]" > <span class="opt-label">Entertainment</span>
+						</div>
+					</label>
+										<label class="checkbox shopping" id="tag-opt-16">
+						<div class="label-content">
+							<input type="checkbox" value="16" name="tags[]" > <span class="opt-label">Shopping</span>
+						</div>
+					</label>
+										<label class="checkbox attraction" id="tag-opt-17">
+						<div class="label-content">
+							<input type="checkbox" value="17" name="tags[]" > <span class="opt-label">Attraction</span>
+						</div>
+					</label>
+										<label class="checkbox photo opportunity" id="tag-opt-18">
+						<div class="label-content">
+							<input type="checkbox" value="18" name="tags[]" > <span class="opt-label">Photo opportunity</span>
+						</div>
+					</label>
+									</fieldset>		
+				 -->
+			</form>
+		</div> <!-- // .module-content -->		
+		<div class="module-footer">
+			<button class="button" id="refine-button">Refine</button>
+		</div> <!-- // .module-footer -->
+	</div> <!-- // .module.advanced-search -->
+	<script type="text/javascript">
+		advancedSearch.init(); 
+	</script>
+	<div class="things-to-do-wrapper yui3-g">
+<div class="yui3-u-1" id="google-map"></div>
+
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-1.png" alt="#1" class="clickable-marker" id="marker-1" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/9/299_s.jpg" alt="Eat a New York Hot Dog thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/327/eat-a-new-york-hot-dog" title="Eat a New York Hot Dog">Eat a New York Hot Dog</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">New York, NY (United States)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-2.png" alt="#2" class="clickable-marker" id="marker-2" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/9/297_s.jpg" alt="Cliff Jumping At Ricks Cafe, Jamaica thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/325/cliff-jumping-at-ricks-cafe-jamaica" title="Cliff Jumping At Ricks Cafe, Jamaica">Cliff Jumping At Ricks Cafe, Jamaica</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Negril, Westmoreland Parish (Jamaica)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-3.png" alt="#3" class="clickable-marker" id="marker-3" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/9/293_s.jpg" alt="Canoe Bar Lunch &amp; Cocktails thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/323/canoe-bar-lunch-cocktails" title="Canoe Bar Lunch & Cocktails">Canoe Bar Lunch & Cocktails</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Negril, Westmoreland Parish (Jamaica)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-4.png" alt="#4" class="clickable-marker" id="marker-4" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/8/282_s.jpg" alt="Life Drawing Class With The Girls thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/315/life-drawing-class-with-the-girls" title="Life Drawing Class With The Girls">Life Drawing Class With The Girls</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Potts Point, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-5.png" alt="#5" class="clickable-marker" id="marker-5" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/8/280_s.jpg" alt="Have a picnic with the girls at Gazebo Wine Bar thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/313/have-a-picnic-with-the-girls-at-gazebo-wine-bar" title="Have a picnic with the girls at Gazebo Wine Bar">Have a picnic with the girls at Gazebo Wine Bar</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Elizabeth Bay, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-6.png" alt="#6" class="clickable-marker" id="marker-6" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/7/278_s.jpg" alt="Lobster on the Rooftop at The Rook thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/311/lobster-on-the-rooftop-at-the-rook" title="Lobster on the Rooftop at The Rook">Lobster on the Rooftop at The Rook</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Sydney, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-7.png" alt="#7" class="clickable-marker" id="marker-7" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/7/277_s.jpg" alt="Have a Rooftop Beer At The Royal Hotel thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/310/have-a-rooftop-beer-at-the-royal-hotel" title="Have a Rooftop Beer At The Royal Hotel">Have a Rooftop Beer At The Royal Hotel</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Paddington, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-8.png" alt="#8" class="clickable-marker" id="marker-8" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/7/276_s.jpg" alt="Visit The Strawberry Hills Hotel Rooftop thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/309/visit-the-strawberry-hills-hotel-rooftop" title="Visit The Strawberry Hills Hotel Rooftop">Visit The Strawberry Hills Hotel Rooftop</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-9.png" alt="#9" class="clickable-marker" id="marker-9" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/6/269_s.jpg" alt="The Local Taphouse thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/303/the-local-taphouse" title="The Local Taphouse">The Local Taphouse</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Darlinghurst, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-10.png" alt="#10" class="clickable-marker" id="marker-10" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/5/258_s.jpg" alt="Eat like a local at the Gili Trawangan Markets thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/295/eat-like-a-local-at-the-gili-trawangan-markets" title="Eat like a local at the Gili Trawangan Markets">Eat like a local at the Gili Trawangan Markets</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">, West Nusa Tenggara (Indonesia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-11.png" alt="#11" class="clickable-marker" id="marker-11" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/4/244_s.jpg" alt="Feed Kangaroos thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/287/feed-kangaroos" title="Feed Kangaroos">Feed Kangaroos</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">, WA (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-12.png" alt="#12" class="clickable-marker" id="marker-12" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/3/233_s.jpg" alt="Lunch at Jonah&#039;s thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/280/lunch-at-jonahs" title="Lunch at Jonah's">Lunch at Jonah's</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Palm Beach, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-13.png" alt="#13" class="clickable-marker" id="marker-13" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/3/231_s.jpg" alt="Free meal at Hofbrauhaus thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/278/free-meal-at-hofbrauhaus" title="Free meal at Hofbrauhaus">Free meal at Hofbrauhaus</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Melbourne, VIC (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-14.png" alt="#14" class="clickable-marker" id="marker-14" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/2/228_s.jpg" alt="Watch the Sunset at Sunset Point thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/277/watch-the-sunset-at-sunset-point" title="Watch the Sunset at Sunset Point">Watch the Sunset at Sunset Point</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">, West Nusa Tenggara (Indonesia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-15.png" alt="#15" class="clickable-marker" id="marker-15" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/2/226_s.jpg" alt="Home Brew &quot;Texican&quot; beer at the Elan thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/275/home-brew-texican-beer-at-the-elan" title="Home Brew "Texican" beer at the Elan">Home Brew "Texican" beer at the Elan</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Port Vila, She (Vanuatu)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-16.png" alt="#16" class="clickable-marker" id="marker-16" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/1/213_s.jpg" alt="Rock out at Vasco Bar thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/263/rock-out-at-vasco-bar" title="Rock out at Vasco Bar">Rock out at Vasco Bar</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 5">✭✭✭✭✭</span> (1 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-17.png" alt="#17" class="clickable-marker" id="marker-17" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/1/210_s.jpg" alt="Sip on some Wine at The Winery thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/260/sip-on-some-wine-at-the-winery" title="Sip on some Wine at The Winery">Sip on some Wine at The Winery</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-18.png" alt="#18" class="clickable-marker" id="marker-18" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/2/0/205_s.jpg" alt="Graffiti a toilet wall (legally) thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/257/graffiti-a-toilet-wall-legally" title="Graffiti a toilet wall (legally)">Graffiti a toilet wall (legally)</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Darlinghurst, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-19.png" alt="#19" class="clickable-marker" id="marker-19" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/1/9/192_s.jpg" alt="Kookaburra feeding thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/252/kookaburra-feeding" title="Kookaburra feeding">Kookaburra feeding</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Tangalooma, QLD (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src="./img/markers/66/66-20.png" alt="#20" class="clickable-marker" id="marker-20" />
+			
+	
+			<img src="http://www.thingoder.com/things-to-do-photos/1/8/181_s.jpg" alt="Go for a bushwalk or hike on Moreton Island thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/246/go-for-a-bushwalk-or-hike-on-moreton-island" title="Go for a bushwalk or hike on Moreton Island">Go for a bushwalk or hike on Moreton Island</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Tangalooma, QLD (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div><script type="text/javascript">
+var map;
+var marker = {};
+var active_place_form = '1';
+function initializeMap()
+{
+	function attachInfoWindow(marker,i) {
+		var infowindow = new google.maps.InfoWindow(
+			{   content: '<em>'+marker.title+'</em><br />'+contents[i],
+				maxWidth: 250
+		    	//size: new google.maps.Size(50,50)
+			});
+			google.maps.event.addListener(marker, 'click', function() {
+				if (infowindow.getMap()) { 
+					infowindow.close(map,marker);
+				} else {
+					infowindow.open(map,marker);
+					marker.setAnimation(google.maps.Animation.BOUNCE);
+					setTimeout('marker['+i+'].setAnimation(null)',900);
+				}
+			});
+		bounds.extend(marker.position);
+	}
+		 
+	var mapProp = {
+		zoom:15,
+		center: new google.maps.LatLng(-33.867489,151.206985),
+		mapTypeId:google.maps.MapTypeId.ROADMAP	};
+	map=new google.maps.Map(document.getElementById("google-map")
+			,mapProp);
+	var bounds = new google.maps.LatLngBounds();
+
+	
+
+	
+	var lats = ["40.790279","18.279177","18.278082","-33.873421","-33.872440","-33.869823","-33.882324","-33.886444","-33.884708","-8.350797","-31.819071","-33.607307","-37.811951","-8.358381","-17.754620","-33.891766","-33.881336","-33.881023","-27.177856","-27.189959"];
+    var longs = ["-73.959724","-78.352188","-78.359268","151.223648","151.226074","151.206421","151.228348","151.208191","151.218094","116.044121","115.962456","151.329666","144.969345","116.031853","168.292725","151.213669","151.214462","151.217255","153.374023","153.368118"];
+    var titles = ["Eat a New York Hot Dog","Cliff Jumping At Ricks Cafe, Jamaica","Canoe Bar Lunch & Cocktails","Life Drawing Class With The Girls","Have a picnic with the girls at Gazebo Wine Bar","Lobster on the Rooftop at The Rook","Have a Rooftop Beer At The Royal Hotel","Visit The Strawberry Hills Hotel Rooftop","The Local Taphouse","Eat like a local at the Gili Trawangan Markets","Feed Kangaroos","Lunch at Jonah\'s","Free meal at Hofbrauhaus","Watch the Sunset at Sunset Point","Home Brew \"Texican\" beer at the Elan","Rock out at Vasco Bar","Sip on some Wine at The Winery","Graffiti a toilet wall (legally)","Kookaburra feeding","Go for a bushwalk or hike on Moreton Island"];
+    var contents = ["<br /><a href=\"/thing/view/327/eat-a-new-york-hot-dog\" title=\"Eat a New York Hot Dog\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/325/cliff-jumping-at-ricks-cafe-jamaica\" title=\"Cliff Jumping At Ricks Cafe, Jamaica\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/323/canoe-bar-lunch-cocktails\" title=\"Canoe Bar Lunch & Cocktails\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/315/life-drawing-class-with-the-girls\" title=\"Life Drawing Class With The Girls\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/313/have-a-picnic-with-the-girls-at-gazebo-wine-bar\" title=\"Have a picnic with the girls at Gazebo Wine Bar\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/311/lobster-on-the-rooftop-at-the-rook\" title=\"Lobster on the Rooftop at The Rook\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/310/have-a-rooftop-beer-at-the-royal-hotel\" title=\"Have a Rooftop Beer At The Royal Hotel\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/309/visit-the-strawberry-hills-hotel-rooftop\" title=\"Visit The Strawberry Hills Hotel Rooftop\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/303/the-local-taphouse\" title=\"The Local Taphouse\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/295/eat-like-a-local-at-the-gili-trawangan-markets\" title=\"Eat like a local at the Gili Trawangan Markets\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/287/feed-kangaroos\" title=\"Feed Kangaroos\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/280/lunch-at-jonahs\" title=\"Lunch at Jonah\'s\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/278/free-meal-at-hofbrauhaus\" title=\"Free meal at Hofbrauhaus\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/277/watch-the-sunset-at-sunset-point\" title=\"Watch the Sunset at Sunset Point\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/275/home-brew-texican-beer-at-the-elan\" title=\"Home Brew \"Texican\" beer at the Elan\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/263/rock-out-at-vasco-bar\" title=\"Rock out at Vasco Bar\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/260/sip-on-some-wine-at-the-winery\" title=\"Sip on some Wine at The Winery\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/257/graffiti-a-toilet-wall-legally\" title=\"Graffiti a toilet wall (legally)\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/252/kookaburra-feeding\" title=\"Kookaburra feeding\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/246/go-for-a-bushwalk-or-hike-on-moreton-island\" title=\"Go for a bushwalk or hike on Moreton Island\" class=\"button\">View thing</a>"];
+
+	for(var i = 0; i < 20; i++) {
+		marker[i] = new google.maps.Marker({
+			position:new google.maps.LatLng(lats[i],longs[i]),
+			title: titles[i],
+			icon: 'http://www.thingdoer.com/media/img/markers/33/33-'+parseFloat(i+1)+'.png',
+			/*shadow: 'http://www.thingdoer.com/media/img/markers/33/33-shadow.png',*/
+			animation: google.maps.Animation.DROP,
+			
+		});
+			attachInfoWindow(marker[i],i);
+		marker[i].setMap(map);
+	}
+    map.fitBounds(bounds);
+    map.panToBounds(bounds);
+    var listener = google.maps.event.addListenerOnce(map, "idle", function() { 
+		if (map.getZoom() > 17) map.setZoom(17);  
+	}); 
+} // initialiase map
+
+	function openMarker(i){
+	   google.maps.event.trigger(marker[i],'click');
+	};
+
+	$('.clickable-marker').click(function(){
+		var marker_id = parseFloat($(this).attr('id').substr(7))-1;
+		location.hash = "#google-map"; 
+		openMarker(marker_id);
+	});
+google.maps.event.addDomListener(window, 'load', initializeMap);
+</script>
+	</div>
+		<div class="pagination yui3-g">
+	<div class="yui3-u-1-4">
+			<span class="button disabled">First</span>
+				<span class="button disabled">Previous</span>
+		</div>
+	<div class="yui3-u-1-2 page-numbers">
+	
+					<span class="button current disabled">1</span>
+		
+	
+					<span class="button"><a href="/find-things-to-do?like=food&amp;map=true&amp;p=2">2</a></span>
+		
+		</div>
+	<div class="yui3-u-1-4">
+			<span class="button"><a href="/find-things-to-do?like=food&amp;map=true&amp;p=2" rel="next">Next</a></span>
+				<span class="button"><a href="/find-things-to-do?like=food&amp;map=true&amp;p=2" rel="last">Last</a></span>
+		</div>
+</div>	
+<script type="text/javascript">
+<!--
+//setup the search box and autocomplete 
+var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(-9.102097,104.765625),
+  new google.maps.LatLng(-44.902578,159.697266));
+
+var auto_complete_input_textbox = document.getElementById('place_auto_complete_input');
+var searchBox = new google.maps.places.SearchBox(auto_complete_input_textbox, {
+  bounds: defaultBounds,
+  enableEventPropagation: false,  
+});
+var geocoder = new google.maps.Geocoder();
+google.maps.event.addListener(searchBox, 'places_changed', function() {
+	console.log($('input#place_auto_complete_input').val());
+	geocoder.geocode({ 'address': $('input#place_auto_complete_input').val() }, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			console.log(results[0]);
+			var latitude = results[0].geometry.location.lat();
+			var longitude = results[0].geometry.location.lng();
+			var location = results[0].formatted_address;
+			window.location = 'http://www.thingdoer.com/find-things-to-do/?like=food&map=true&latitude='+latitude+'&longitude='+longitude+'&location='+location; 
+		}
+	});
+});
+//-->
+</script>
+				       				       
+			       </div> <!-- // .content -->
+			    </div> <!-- // .content-wrapper -->
+			    <div id="things-to-do-rhs" class="yui3-u">
+			    	<div class="module latest-things" id="latest-things">
+	<div class="module-header">
+		<h3>Latest things</h3>
+	</div>
+	<div class="module-content yui3-g">
+				
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/3/2/324_s.jpg" alt="Margaritas at Rojo Rocket, Avoca thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/346/margaritas-at-rojo-rocket-avoca" title="Margaritas at Rojo Rocket, Avoca">Margaritas at Rojo Rocket, Avoca</a></span>
+					<span class="thing-feeder-location">Kincumber (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/3/2/321_s.jpg" alt="Frangelico affogato&#039;s at the Sugaroom, Pyrmont thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/345/frangelico-affogatos-at-the-sugaroom-pyrmont" title="Frangelico affogato's at the Sugaroom, Pyrmont">Frangelico affogato's at the Sugaroom, Pyrmont</a></span>
+					<span class="thing-feeder-location">Pyrmont (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/3/2/320_s.jpg" alt="Chess in Hyde Park thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/344/chess-in-hyde-park" title="Chess in Hyde Park">Chess in Hyde Park</a></span>
+					<span class="thing-feeder-location">Sydney (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/3/1/319_s.jpg" alt="Beer and prawns in surry hills thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/343/beer-and-prawns-in-surry-hills" title="Beer and prawns in surry hills">Beer and prawns in surry hills</a></span>
+					<span class="thing-feeder-location">Surry Hills (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/3/1/318_s.jpg" alt="Create a new drinking game thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/342/create-a-new-drinking-game" title="Create a new drinking game">Create a new drinking game</a></span>
+				</div>
+		</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module most-popular-things" id="most-popular-things">
+	<div class="module-header">
+		<h3>Most popular things</h3>
+	</div>
+	<div class="module-content yui3-g">
+				
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/2/1/213_s.jpg" alt="Rock out at Vasco Bar thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/263/rock-out-at-vasco-bar" title="Rock out at Vasco Bar">Rock out at Vasco Bar</a></span>
+					<span class="thing-feeder-location">Surry Hills (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/4/46_s.jpg" alt="Govindas dinner and lay down movie thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/28/govindas-dinner-and-lay-down-movie" title="Govindas dinner and lay down movie">Govindas dinner and lay down movie</a></span>
+					<span class="thing-feeder-location">Darlinghurst (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/3/38_s.jpg" alt="Get the ferry to Doyles thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/129/get-the-ferry-to-doyles" title="Get the ferry to Doyles">Get the ferry to Doyles</a></span>
+					<span class="thing-feeder-location">Watsons Bay (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/7/70_s.jpg" alt="Swim in Sydney Harbour thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/158/swim-in-sydney-harbour" title="Swim in Sydney Harbour">Swim in Sydney Harbour</a></span>
+					<span class="thing-feeder-location">NSW (Australia)</span>
+				</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingoder.com/things-to-do-photos/7/74_s.jpg" alt="Riverside Beers at the Ivory thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/162/riverside-beers-at-the-ivory" title="Riverside Beers at the Ivory">Riverside Beers at the Ivory</a></span>
+					<span class="thing-feeder-location">Tweed Heads (Australia)</span>
+				</div>
+		</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module sign-uplogin" id="sign-uplogin">
+	<div class="module-header">
+		<h3>Sign-up/Login</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<form action="/user/login" method="post" accept-charset="utf-8"><div class="yui3-g login-inputs">
+	<div class="yui3-u-1-2">
+		<ul>
+			<li>
+				<label for="username">Email or Username</label>				<li><input type="text" name="username" class="text twothirds text" placeholder="Enter your username or password" /></li>			</li>
+			<li>
+				<label for="password">Password</label>				<li><input type="password" name="password" class="text twothirds password" placeholder="Enter your password" /></li>     		</li>
+			<li><span class="forgot-pass-link"><a href="/user/forgot">Forgot your password?</a></span></li>
+<li><div class="remind-container twothirds"><input type="checkbox" id="remember" name="remember" value="remember" style="margin-right: 10px" /><label style="display: inline" for="remember">Remember me</label><input type="submit" value="Login" class="submit" style="float: right;" /></div></li></ul></form></div>
+<div class="yui3-u-1-2">
+	<ul>
+   <li>Or login to/register your account with:</li>
+   <li>
+         <a class="login_provider" style="background: #FFF url(/media/img/users/facebook.png) no-repeat center center" href="/user/provider/facebook"></a>
+         <a class="login_provider" style="background: #FFF url(/media/img/users/google.gif) no-repeat center center" href="/user/provider/google"></a>
+      	<br style="clear: both;">
+   </li>
+	<li class="register-link-in-login">Don't have an account? <a href="/user/register">Register a new account</a></li>
+	</ul>
+</div>
+</div> <!-- // .yui3-g -->
+	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module facebook-us" id="facebook-us">
+	<div class="module-header">
+		<h3>Facebook us</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fthingdoer&amp;width=100&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%;" allowTransparency="true"></iframe>	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div>			    </div>
+			    <div id="block-footer"></div>
+		   </div> <!-- // .block -->
+	       <script type="text/javascript">
+	       		function do_it_again(){ 
+		       		$('#add_another').val('true'); 
+		       		$('#add_another').parents('form').submit(); 
+		       	}
+				// handles the auto complete for the items page 
+	       		$(function() {
+		       		function split( val ) {
+		       			return val.split( /,\s*/ );
+		       		}
+		       		function extractLast( term ) {
+		       			return split( term ).pop();
+		    	   	}
+			       	$( "div.item-wrappers #title" )
+		       		.bind( "keydown", function( event ) {
+			       		if ( event.keyCode === $.ui.keyCode.TAB && $( this ).data( "ui-autocomplete" ).menu.active ) {
+			       			event.preventDefault();
+			       		} else if(event.keyCode === 8 && this.value.length == 0) {
+			       			$('[id^="form-container-item"]:visible:last').slideUp(300,function(){
+				       			var restore_val = $('[id^="form-container-item"]:visible:last').find('input').val();
+			       				$('[id^="form-container-item"]:visible:last').find('input').focus().val('').val(restore_val);
+			       			});
+			       		}
+		       		})
+			       	.autocomplete({
+			       		source: function( request, response ) {
+			       			$.getJSON( '/autocomplete/item/', {
+			       				term: extractLast( request.term )
+			       			}, response );
+			       		},
+			       		search: function() {
+			       			// custom minLength
+			       			var term = extractLast(this.value);
+			       			if ( term.length < 2 ) {
+			       				return false;
+			       			} 
+			       		},
+			       		focus: function() {
+			       			// prevent value inserted on focus
+			       			return false;
+			       		},
+			       		select: function( event, ui ) {
+			    		   	this.value = ui.item.value;
+			    		   	$('[id^="form-container-item"]:hidden:first').slideDown().find('input').focus();
+			    		   	// ui-helper-hidden-accessible
+					       	return false;
+			    	   	}
+			       	});
+				}); 
+		   </script>
+		   <div id="footer">
+		   		<div class="footer-things-to-do-container">
+		   			<div class="module footer-latest-collections" id="footer-latest-collections">
+	<div class="module-header">
+		<h3>Popular Locations</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<ul class="yui3-u-1">
+	<li><a href="/collections/sydney-walks/" title="Sydney Walks">Sydney Walks</a></li>
+	<li><a href="/collections/rooftop-bars-in-sydney/" title="Rooftop Bars In Sydney">Rooftop Bars In Sydney</a></li>
+	<li><a href="/collections/jumps-into-sydney-harbour/" title="Jumps into sydney harbour">Jumps into sydney harbour</a></li>
+	<li><a href="/collections/things-to-do-in-surry-hills/" title="Things To Do In Surry Hills">Things To Do In Surry Hills</a></li>
+	<li><a href="/collections/things-to-do-in-byron-bay/" title="Things To Do In Byron Bay">Things To Do In Byron Bay</a></li>
+</ul>	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module popular-searches" id="popular-searches">
+	<div class="module-header">
+		<h3>Popular searches</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<ul class="yui3-u-1">
+	<li><a href="/find-things-to-do/?like=Sydney" title="Sydney">Sydney</a></li>
+	<li><a href="/find-things-to-do/?like=Food" title="Food">Food</a></li>
+	<li><a href="/find-things-to-do/?like=kids" title="kids">kids</a></li>
+	<li><a href="/find-things-to-do/?like=walks" title="walks">walks</a></li>
+	<li><a href="/find-things-to-do/?like=Shop" title="Shop">Shop</a></li>
+</ul>	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div>		   			<div class="module footer-things-to-do">
+		   				<div class="header">
+		   					<h2>Things to do by budget</h2>
+		   				</div> <!--  // .header -->
+		   				<div class="content">
+		   					<ul>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=10" title="Things to do for under $10">Things to do for under $10</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=20" title="Things to do for under $20">Things to do for under $20</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=30" title="Things to do for under $30">Things to do for under $30</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=40" title="Things to do for under $40">Things to do for under $40</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=50" title="Things to do for under $50">Things to do for under $50</a></li>
+		   						   					</ul>
+		   				</div> <!-- // .content -->
+		   			</div>
+		   			<div class="module footer-things-to-do">
+		   				<div class="header">
+		   					<h2>How's the weather?</h2>
+		   				</div> <!--  // .header -->
+		   				<div class="content">
+		   					<ul>
+		   						   						   						<li><a href="/find-things-to-do/?like=&weathers[]=3" title="Things to do on a bad weather day">Things to do in bad weather</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&weathers[]=8" title="Things to do on a good weather day">Things to do in good weather</a></li>
+		   						   					</ul>
+		   				</div> <!-- // .content -->
+		   			</div> <!-- // .footer-things-to-do-container -->
+		   		</div>
+	    		<div class="yui3-g" id="social-about-links">
+	    			<div class="yui3-u-2-5">
+	    				<div class="find-us">
+							<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+								<a class="addthis_button_facebook_follow" addthis:userid="thingdoer"></a>
+								<a class="addthis_button_twitter_follow" addthis:userid="thingdoerdotcom"></a>
+								<a class="addthis_button_google_follow" addthis:userid="thingdoer"></a>
+								<a class="addthis_button_tumblr_follow" addthis:userid="thingdoer"></a>
+							</div>
+						</div>
+						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-519e00c959f2644e"></script>
+						<!-- AddThis Follow END -->	    			
+	    			</div>	    		
+	    			<div class="yui3-u-3-5">
+	    				<!-- <div class="twitter-feed">
+	    					<p>Twitter feed goes here</p>
+	    				</div> -->
+	    			</div>
+	    		</div>
+	    		<div class="footer-links">
+	    		<span id="privacy-policy" style="float:right;"><a href="http://www.iubenda.com/privacy-policy/428589" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></span>
+	    		<p>Copyright Thingdoer 2014</p>
+	    		</div>
+	       </div> <!-- // #footer -->
+	    </div> <!-- // #page -->
+	    <div id="modal-overlay">
+	    	
+	    </div> 
+	    <div id="modal-window">	
+	    	<div class="modal-header">
+	    		<span id="close-modal">x</span><h2 id="modal-heading"></h2>
+	    	</div>
+	    	<div class="modal-content">
+	    	
+	    	</div>
+	    </div> <!-- // #modal-window -->
+    </body>
+</html>

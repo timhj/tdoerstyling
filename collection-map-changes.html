@@ -11,31 +11,18 @@
         
 		        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssnormalize/cssnormalize-min.css">
     	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
-    	<link rel="stylesheet" type="text/css" href="./css/thingdoer.css">
+    	<link rel="stylesheet" type="text/css" href=".//css/thingdoer.css">
 		
         <script type='text/javascript' src="http://code.jquery.com/jquery-latest.min.js"></script>
-                <script type='text/javascript' src="./js/standard.js"></script>
-        <script type='text/javascript' src="./js/modernizr.js"></script>
-        <script type='text/javascript' src="./js/timepicker.js"></script>
-        <script type='text/javascript' src="./js/rangeinput.js"></script>
-        <script type='text/javascript' src="./js/aspect-correct.js"></script>
-        <script type='text/javascript' src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&libraries=places&sensor=true"></script>
+                <script type='text/javascript' src=".//js/standard.js"></script>
+        <script type='text/javascript' src=".//js/modernizr.js"></script>
+        <script type='text/javascript' src=".//js/timepicker.js"></script>
+        <script type='text/javascript' src=".//js/rangeinput.js"></script>
+        <script type='text/javascript' src=".//js/aspect-correct.js"></script>
+        <script type='text/javascript' src=".//js/jquery-ui-1.10.3.custom.min.js"></script>
     	<script type='text/javascript' src="http://yui.yahooapis.com/3.9.1/build/yui/yui-min.js"></script>
-    	        		<script type="text/javascript">
-		  // google async snippet initialise
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-41773188-1']);
-		  _gaq.push(['_setDomainName', 'thingdoer.com']);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-		
-		</script>
-    </head>
+     </head>
    
     <body class="collection">
     	<script type="text/javascript">
@@ -182,514 +169,423 @@
 					</div>
 	<div class="yui3-u-1-5">
 		<div class="things-to-do-list-options">
-					<a href="/collections/things-to-do-in-surry-hills/?map=true" rel="no-follow" class="button">View things on a map</a>
+					<a href="/collections/things-to-do-in-surry-hills/?map=false" rel="no-follow" class="button">Back to list view</a>
 						</div>
 	</div>
 </div>
 	<div class="things-to-do-wrapper yui3-g">
+<div class="yui3-u-1" id="google-map"></div>
 
-<div class="thing-single yui3-u-1-4">
-		
+<div class="thing-single-map yui3-u-1-2">
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/3/1/319_m.jpg" alt="Beer and prawns in surry hills promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>1. <a href="/thing/view/343/beer-and-prawns-in-surry-hills" title="Beer and prawns in surry hills">Beer and prawns in surry hills</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Crown street fish shop brings the beach to the burbs, it's a beautiful spot on...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">15</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
+		<img src=".//img/markers/66/66-1.png" alt="#1" class="clickable-marker" id="marker-1" />
+			
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/8/287_m.jpg" alt="Sandwich bliss @ Lucky Pickle promo" class="promo" />				</div>
-			</div>
-		</div>
+			<img src="http://www.thingdoer.com/things-to-do-photos/3/1/319_s.jpg" alt="Beer and prawns in surry hills thumbnail" class="thumbnail" />		<div class="text-wrapper">
 		<div class="thing-header">
-		<h2>2. <a href="/thing/view/320/sandwich-bliss-lucky-pickle" title="Sandwich bliss @ Lucky Pickle">Sandwich bliss @ Lucky Pickle</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Lucky pickle in Surry Hills is sandwich heaven! This hidden away little gem near Devonshire...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">55</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
+			<h2><a href="/thing/view/343/beer-and-prawns-in-surry-hills" title="Beer and prawns in surry hills">Beer and prawns in surry hills</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/8/283_m.jpg" alt="Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>3. <a href="/thing/view/316/watch-a-movie-whilst-drinking-a-cocktail-at-the-golden-age-surry-hills" title="Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills">Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Once the home of Paramount Pictures in the 1940s, the Golden age now comes complete...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">214</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
+		<img src=".//img/markers/66/66-2.png" alt="#2" class="clickable-marker" id="marker-2" />
+			
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/7/276_m.jpg" alt="Visit The Strawberry Hills Hotel Rooftop promo" class="promo" />				</div>
-			</div>
-		</div>
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/8/287_s.jpg" alt="Sandwich bliss @ Lucky Pickle thumbnail" class="thumbnail" />		<div class="text-wrapper">
 		<div class="thing-header">
-		<h2>4. <a href="/thing/view/309/visit-the-strawberry-hills-hotel-rooftop" title="Visit The Strawberry Hills Hotel Rooftop">Visit The Strawberry Hills Hotel Rooftop</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Pimms and pub food might not feel like a natural match, but blended with the...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">26</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
+			<h2><a href="/thing/view/320/sandwich-bliss-lucky-pickle" title="Sandwich bliss @ Lucky Pickle">Sandwich bliss @ Lucky Pickle</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/6/269_m.jpg" alt="The Local Taphouse promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>5. <a href="/thing/view/303/the-local-taphouse" title="The Local Taphouse">The Local Taphouse</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			A great place to check out for lunch, dinner, weeknight catch-ups or sunday sessions, The...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">57</span>
-		</div>
-				<span class="thing-feeder-location">Darlinghurst, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
+		<img src=".//img/markers/66/66-3.png" alt="#3" class="clickable-marker" id="marker-3" />
+			
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/6/262_m.jpg" alt="Eat Tsotsi&#039;s snails  promo" class="promo" />				</div>
-			</div>
-		</div>
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/8/283_s.jpg" alt="Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills thumbnail" class="thumbnail" />		<div class="text-wrapper">
 		<div class="thing-header">
-		<h2>6. <a href="/thing/view/297/eat-tsotsis-snails" title="Eat Tsotsi's snails ">Eat Tsotsi's snails </a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Tsotsi's has a wide range of South African treats on the menu, the most interesting...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">62</span>
-		</div>
-				<span class="thing-feeder-location">Darlinghurst, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
+			<h2><a href="/thing/view/316/watch-a-movie-whilst-drinking-a-cocktail-at-the-golden-age-surry-hills" title="Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills">Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/6/260_m.jpg" alt="Pho at Madame Nhu&#039;s promo" class="promo" />				</div>
-			</div>
-		</div>
+		<img src=".//img/markers/66/66-4.png" alt="#4" class="clickable-marker" id="marker-4" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/7/276_s.jpg" alt="Visit The Strawberry Hills Hotel Rooftop thumbnail" class="thumbnail" />		<div class="text-wrapper">
 		<div class="thing-header">
-		<h2>7. <a href="/thing/view/296/pho-at-madame-nhus" title="Pho at Madame Nhu's">Pho at Madame Nhu's</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			The environment is cute and cozy with a little bit of kitsch. 
+			<h2><a href="/thing/view/309/visit-the-strawberry-hills-hotel-rooftop" title="Visit The Strawberry Hills Hotel Rooftop">Visit The Strawberry Hills Hotel Rooftop</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-5.png" alt="#5" class="clickable-marker" id="marker-5" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/6/269_s.jpg" alt="The Local Taphouse thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/303/the-local-taphouse" title="The Local Taphouse">The Local Taphouse</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Darlinghurst, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-6.png" alt="#6" class="clickable-marker" id="marker-6" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/6/262_s.jpg" alt="Eat Tsotsi&#039;s snails  thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/297/eat-tsotsis-snails" title="Eat Tsotsi's snails ">Eat Tsotsi's snails </a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Darlinghurst, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-7.png" alt="#7" class="clickable-marker" id="marker-7" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/6/260_s.jpg" alt="Pho at Madame Nhu&#039;s thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/296/pho-at-madame-nhus" title="Pho at Madame Nhu's">Pho at Madame Nhu's</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-8.png" alt="#8" class="clickable-marker" id="marker-8" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/5/252_s.jpg" alt="Drink an Iced Coffee at the Ampersand Café thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/292/drink-an-iced-coffee-at-the-ampersand-café" title="Drink an Iced Coffee at the Ampersand Café">Drink an Iced Coffee at the Ampersand Café</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Paddington, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-9.png" alt="#9" class="clickable-marker" id="marker-9" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/2/223_s.jpg" alt="Catch some live music at Dome Bar thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/273/catch-some-live-music-at-dome-bar" title="Catch some live music at Dome Bar">Catch some live music at Dome Bar</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-10.png" alt="#10" class="clickable-marker" id="marker-10" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/2/222_s.jpg" alt="Have a Cocktail at Button Bar thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/272/have-a-cocktail-at-button-bar" title="Have a Cocktail at Button Bar">Have a Cocktail at Button Bar</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Sydney, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-11.png" alt="#11" class="clickable-marker" id="marker-11" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/2/221_s.jpg" alt="Visit The Chalkhorse Gallery thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/271/visit-the-chalkhorse-gallery" title="Visit The Chalkhorse Gallery">Visit The Chalkhorse Gallery</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-12.png" alt="#12" class="clickable-marker" id="marker-12" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/2/220_s.jpg" alt="Have a Wine At 121BC thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/270/have-a-wine-at-121bc" title="Have a Wine At 121BC">Have a Wine At 121BC</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-13.png" alt="#13" class="clickable-marker" id="marker-13" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/219_s.jpg" alt="Visit the Outre Gallery thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/269/visit-the-outre-gallery" title="Visit the Outre Gallery">Visit the Outre Gallery</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-14.png" alt="#14" class="clickable-marker" id="marker-14" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/218_s.jpg" alt="Visit the Mark Hanham Gallery thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/268/visit-the-mark-hanham-gallery" title="Visit the Mark Hanham Gallery">Visit the Mark Hanham Gallery</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-15.png" alt="#15" class="clickable-marker" id="marker-15" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/217_s.jpg" alt="Visit Friends of Leon thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/267/visit-friends-of-leon" title="Visit Friends of Leon">Visit Friends of Leon</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-16.png" alt="#16" class="clickable-marker" id="marker-16" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/216_s.jpg" alt="Visit COTA thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/266/visit-cota" title="Visit COTA">Visit COTA</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-17.png" alt="#17" class="clickable-marker" id="marker-17" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/215_s.jpg" alt="Have a Beer At The Dolphin Hotel thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/265/have-a-beer-at-the-dolphin-hotel" title="Have a Beer At The Dolphin Hotel">Have a Beer At The Dolphin Hotel</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-18.png" alt="#18" class="clickable-marker" id="marker-18" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/214_s.jpg" alt="Visit The Ann Snell Gallery thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/264/visit-the-ann-snell-gallery" title="Visit The Ann Snell Gallery">Visit The Ann Snell Gallery</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-19.png" alt="#19" class="clickable-marker" id="marker-19" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/213_s.jpg" alt="Rock out at Vasco Bar thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/263/rock-out-at-vasco-bar" title="Rock out at Vasco Bar">Rock out at Vasco Bar</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 5">✭✭✭✭✭</span> (1 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div>
+<div class="thing-single-map yui3-u-1-2">
+	
+		<img src=".//img/markers/66/66-20.png" alt="#20" class="clickable-marker" id="marker-20" />
+			
+	
+			<img src="http://www.thingdoer.com/things-to-do-photos/2/1/212_s.jpg" alt="The Hughes Gallery thumbnail" class="thumbnail" />		<div class="text-wrapper">
+		<div class="thing-header">
+			<h2><a href="/thing/view/262/the-hughes-gallery" title="The Hughes Gallery">The Hughes Gallery</a></h2>
+		</div> <!-- // .thing-content -->
+		<div class="thing-content">
+			<div class="rating-display">
+				<span class="rating 0">✩✩✩✩✩</span> (0 votes)
+			</div>
+						<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+				</div> <!-- // .thing-content -->
+	</div> <!-- // .text-wrapper -->
+</div><script type="text/javascript">
+var map;
+var marker = {};
+var active_place_form = '1';
+function initializeMap()
+{
+	function attachInfoWindow(marker,i) {
+		var infowindow = new google.maps.InfoWindow(
+			{   content: '<em>'+marker.title+'</em><br />'+contents[i],
+				maxWidth: 250
+		    	//size: new google.maps.Size(50,50)
+			});
+			google.maps.event.addListener(marker, 'click', function() {
+				if (infowindow.getMap()) { 
+					infowindow.close(map,marker);
+				} else {
+					infowindow.open(map,marker);
+					marker.setAnimation(google.maps.Animation.BOUNCE);
+					setTimeout('marker['+i+'].setAnimation(null)',900);
+				}
+			});
+		bounds.extend(marker.position);
+	}
+		 
+	var mapProp = {
+		zoom:15,
+		center: new google.maps.LatLng(-33.867489,151.206985),
+		mapTypeId:google.maps.MapTypeId.ROADMAP	};
+	map=new google.maps.Map(document.getElementById("google-map")
+			,mapProp);
+	var bounds = new google.maps.LatLngBounds();
 
-The pho has...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">86</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/5/252_m.jpg" alt="Drink an Iced Coffee at the Ampersand Café promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>8. <a href="/thing/view/292/drink-an-iced-coffee-at-the-ampersand-café" title="Drink an Iced Coffee at the Ampersand Café">Drink an Iced Coffee at the Ampersand Café</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			A popular destination for locals and tourists in the know, the Ampersand café is one...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">76</span>
-		</div>
-				<span class="thing-feeder-location">Paddington, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
+
 	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/2/223_m.jpg" alt="Catch some live music at Dome Bar promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>9. <a href="/thing/view/273/catch-some-live-music-at-dome-bar" title="Catch some live music at Dome Bar">Catch some live music at Dome Bar</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Dome bar, on the Corner of Crown &amp; Cleveland streets, Boasts live Jazz 3 nights...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">35</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/2/222_m.jpg" alt="Have a Cocktail at Button Bar promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>10. <a href="/thing/view/272/have-a-cocktail-at-button-bar" title="Have a Cocktail at Button Bar">Have a Cocktail at Button Bar</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Occasionally described as a 'Pirate Bar', Button bar is a hip small bar in Foveaux...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">43</span>
-		</div>
-				<span class="thing-feeder-location">Sydney, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/2/221_m.jpg" alt="Visit The Chalkhorse Gallery promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>11. <a href="/thing/view/271/visit-the-chalkhorse-gallery" title="Visit The Chalkhorse Gallery">Visit The Chalkhorse Gallery</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			The Chalkhorse art gallery is an amazing showcase of Australian contemporary artists &amp; their works....		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">50</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/2/220_m.jpg" alt="Have a Wine At 121BC promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>12. <a href="/thing/view/270/have-a-wine-at-121bc" title="Have a Wine At 121BC">Have a Wine At 121BC</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			A great small bar off Holt Street, 121BC seats around 25 people on a large...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">32</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/219_m.jpg" alt="Visit the Outre Gallery promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>13. <a href="/thing/view/269/visit-the-outre-gallery" title="Visit the Outre Gallery">Visit the Outre Gallery</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Outre Gallery's Surry Hills location is wall-to-wall underground art - Contemporary International pop, lowbrow, pop...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">35</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/218_m.jpg" alt="Visit the Mark Hanham Gallery promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>14. <a href="/thing/view/268/visit-the-mark-hanham-gallery" title="Visit the Mark Hanham Gallery">Visit the Mark Hanham Gallery</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Sydney artist Mark Hanham opened his first gallery in 2011, further proving his position as...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">35</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/217_m.jpg" alt="Visit Friends of Leon promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>15. <a href="/thing/view/267/visit-friends-of-leon" title="Visit Friends of Leon">Visit Friends of Leon</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Open only on Saturdays, Friends of Leon is home to brilliantly curated (by resident Artist...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">38</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/216_m.jpg" alt="Visit COTA promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>16. <a href="/thing/view/266/visit-cota" title="Visit COTA">Visit COTA</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			COTA, or 'Courtesy of The Artist', Is where you can find, inspect &amp; purchase contemporary...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">52</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/215_m.jpg" alt="Have a Beer At The Dolphin Hotel promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>17. <a href="/thing/view/265/have-a-beer-at-the-dolphin-hotel" title="Have a Beer At The Dolphin Hotel">Have a Beer At The Dolphin Hotel</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			The Dolphin is a top spot for dinner, drinks, or an afternoon on the beers...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">36</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/214_m.jpg" alt="Visit The Ann Snell Gallery promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>18. <a href="/thing/view/264/visit-the-ann-snell-gallery" title="Visit The Ann Snell Gallery">Visit The Ann Snell Gallery</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Anne Snell's personally selected art from Arnhem Land, The Central Desert, Mornington Island, Tanami desert,...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">30</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/213_m.jpg" alt="Rock out at Vasco Bar promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>19. <a href="/thing/view/263/rock-out-at-vasco-bar" title="Rock out at Vasco Bar">Rock out at Vasco Bar</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Just when you thought there were too many trendy little cocktail joints, along comes Vasco....		</div>
-		<div class="rating-display">
-			<span class="rating 5"><span class="r">✭</span><span class="r">✭</span><span class="r">✭</span><span class="r">✭</span><span class="r">✭</span></span> (1 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">151</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single -->
-<div class="thing-single yui3-u-1-4">
-		
-	
-			<div class="image-promo-wrapper promo">
-			<div class="image-box">
-				<div class="image-cropper">
-				<img src="http://www.thingdoer.com/things-to-do-photos/2/1/212_m.jpg" alt="The Hughes Gallery promo" class="promo" />				</div>
-			</div>
-		</div>
-		<div class="thing-header">
-		<h2>20. <a href="/thing/view/262/the-hughes-gallery" title="The Hughes Gallery">The Hughes Gallery</a></h2>
-	</div> <!-- // .thing-content -->
-	<div class="thing-content">
-		<div class="short-description">
-			Brisbane lost out when the Hughes Gallery (then the Ray Hughes Gallery) moved to Surry...		</div>
-		<div class="rating-display">
-			<span class="rating 0"><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span><span class="d">✭</span></span> (0 votes)
-		</div>
-		<div class="view-display">
-			Views: <span class="view-count">32</span>
-		</div>
-				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
-		
-	</div> <!-- // .thing-content -->
-</div> <!-- // .thing-single --></div>
+	var lats = ["-33.887306","-33.888958","-33.879417","-33.886444","-33.884708","-33.881493","-33.880096","-33.883068","-33.891376","-33.884407","-33.885994","-33.886337","-33.881336","-33.881516","-33.890415","-33.884125","-33.884624","-33.883919","-33.891766","-33.889038"];
+    var longs = ["151.213699","151.213074","151.210938","151.208191","151.218094","151.218536","151.210098","151.221085","151.212662","151.210602","151.211594","151.209564","151.214462","151.214920","151.211349","151.215073","151.214249","151.214935","151.213669","151.214020"];
+    var titles = ["Beer and prawns in surry hills","Sandwich bliss @ Lucky Pickle","Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills","Visit The Strawberry Hills Hotel Rooftop","The Local Taphouse","Eat Tsotsi\'s snails ","Pho at Madame Nhu\'s","Drink an Iced Coffee at the Ampersand Café","Catch some live music at Dome Bar","Have a Cocktail at Button Bar","Visit The Chalkhorse Gallery","Have a Wine At 121BC","Visit the Outre Gallery","Visit the Mark Hanham Gallery","Visit Friends of Leon","Visit COTA","Have a Beer At The Dolphin Hotel","Visit The Ann Snell Gallery","Rock out at Vasco Bar","The Hughes Gallery"];
+    var contents = ["<br /><a href=\"/thing/view/343/beer-and-prawns-in-surry-hills\" title=\"Beer and prawns in surry hills\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/320/sandwich-bliss-lucky-pickle\" title=\"Sandwich bliss @ Lucky Pickle\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/316/watch-a-movie-whilst-drinking-a-cocktail-at-the-golden-age-surry-hills\" title=\"Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/309/visit-the-strawberry-hills-hotel-rooftop\" title=\"Visit The Strawberry Hills Hotel Rooftop\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/303/the-local-taphouse\" title=\"The Local Taphouse\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/297/eat-tsotsis-snails\" title=\"Eat Tsotsi\'s snails \" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/296/pho-at-madame-nhus\" title=\"Pho at Madame Nhu\'s\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/292/drink-an-iced-coffee-at-the-ampersand-café\" title=\"Drink an Iced Coffee at the Ampersand Café\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/273/catch-some-live-music-at-dome-bar\" title=\"Catch some live music at Dome Bar\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/272/have-a-cocktail-at-button-bar\" title=\"Have a Cocktail at Button Bar\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/271/visit-the-chalkhorse-gallery\" title=\"Visit The Chalkhorse Gallery\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/270/have-a-wine-at-121bc\" title=\"Have a Wine At 121BC\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/269/visit-the-outre-gallery\" title=\"Visit the Outre Gallery\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/268/visit-the-mark-hanham-gallery\" title=\"Visit the Mark Hanham Gallery\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/267/visit-friends-of-leon\" title=\"Visit Friends of Leon\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/266/visit-cota\" title=\"Visit COTA\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/265/have-a-beer-at-the-dolphin-hotel\" title=\"Have a Beer At The Dolphin Hotel\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/264/visit-the-ann-snell-gallery\" title=\"Visit The Ann Snell Gallery\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/263/rock-out-at-vasco-bar\" title=\"Rock out at Vasco Bar\" class=\"button\">View thing</a>","<br /><a href=\"/thing/view/262/the-hughes-gallery\" title=\"The Hughes Gallery\" class=\"button\">View thing</a>"];
+
+	for(var i = 0; i < 20; i++) {
+		marker[i] = new google.maps.Marker({
+			position:new google.maps.LatLng(lats[i],longs[i]),
+			title: titles[i],
+			icon: 'http://www.thingdoer.com/media/img/markers/33/33-'+parseFloat(i+1)+'.png',
+			/*shadow: 'http://www.thingdoer.com/media/img/markers/33/33-shadow.png',*/
+			animation: google.maps.Animation.DROP,
+			
+		});
+			attachInfoWindow(marker[i],i);
+		marker[i].setMap(map);
+	}
+    map.fitBounds(bounds);
+    map.panToBounds(bounds);
+    var listener = google.maps.event.addListenerOnce(map, "idle", function() { 
+		if (map.getZoom() > 17) map.setZoom(17);  
+	}); 
+} // initialiase map
+
+	function openMarker(i){
+	   google.maps.event.trigger(marker[i],'click');
+	};
+
+	$('.clickable-marker').click(function(){
+		var marker_id = parseFloat($(this).attr('id').substr(7))-1;
+		location.hash = "#google-map"; 
+		openMarker(marker_id);
+	});
+google.maps.event.addDomListener(window, 'load', initializeMap);
+</script>
+	</div>
 		<div class="pagination yui3-g">
 	<div class="yui3-u-1-4">
 			<span class="button disabled">First</span>
@@ -700,12 +596,12 @@ The pho has...		</div>
 					<span class="button current disabled">1</span>
 		
 	
-					<span class="button"><a href="/Collections/things-to-do-in-surry-hills?p=2">2</a></span>
+					<span class="button"><a href="/Collections/things-to-do-in-surry-hills?map=true&amp;p=2">2</a></span>
 		
 		</div>
 	<div class="yui3-u-1-4">
-			<span class="button"><a href="/Collections/things-to-do-in-surry-hills?p=2" rel="next">Next</a></span>
-				<span class="button"><a href="/Collections/things-to-do-in-surry-hills?p=2" rel="last">Last</a></span>
+			<span class="button"><a href="/Collections/things-to-do-in-surry-hills?map=true&amp;p=2" rel="next">Next</a></span>
+				<span class="button"><a href="/Collections/things-to-do-in-surry-hills?map=true&amp;p=2" rel="last">Last</a></span>
 		</div>
 </div>	
 				       <div class="module comments" id="comments">
@@ -954,7 +850,7 @@ $('.comment .flag-comment').click(function(){
 	<div class="module-content yui3-g">
 		<ul class="yui3-u-1">
 	<li><a href="/find-things-to-do/?like=Sydney" title="Sydney">Sydney</a></li>
-	<li><a href="/find-things-to-do/?like=food" title="food">food</a></li>
+	<li><a href="/find-things-to-do/?like=Food" title="Food">Food</a></li>
 	<li><a href="/find-things-to-do/?like=kids" title="kids">kids</a></li>
 	<li><a href="/find-things-to-do/?like=walks" title="walks">walks</a></li>
 	<li><a href="/find-things-to-do/?like=Shop" title="Shop">Shop</a></li>
