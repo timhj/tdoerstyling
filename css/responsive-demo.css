@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+@media all and (max-width:481px) {
+/* mobile */
+	.find-us { display:block; }
+}
+
+@media all and (min-width: 480px) and (max-width: 1060px) {
+/* tablet */
+	#footer .footer-things-to-do-container { position: relative; } /* make it so you can absolutely position the changed element where you want */
+	.find-us { display: inline-block; width: 22%; float:right; bottom:0; right:0; }
+}
+
+@media all and (min-width: 1060px) {
+/* any desktop specific stuff */
+	
+}
