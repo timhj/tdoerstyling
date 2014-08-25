@@ -2,16 +2,22 @@
 
 @media all and (max-width:481px) {
 /* mobile */
-	.find-us { display:block; }
+	.find-us { display:block; position:relative; }
+	.find-us .at300b { margin: 0 .6em }
 }
 
-@media all and (min-width: 480px) and (max-width: 1060px) {
-/* tablet */
+@media all and (min-width: 481px) {
 	#footer .footer-things-to-do-container { position: relative; } /* make it so you can absolutely position the changed element where you want */
-	.find-us { display: inline-block; width: 22%; float:right; bottom:0; right:0; }
+	.find-us { position:absolute; float:right; display: inline-block; width: 22%; bottom:15%; left:74%; }
+	.find-us .at300b { margin: 0 .05em }
+}
+
+@media all and (min-width: 769px) and (max-width: 1060px) {
+/* tablet */
+	.find-us .at300b { margin: 0 .2em } 
 }
 
 @media all and (min-width: 1060px) {
 /* any desktop specific stuff */
-	
+	.find-us .at300b { margin: 0 .4em }
 }
