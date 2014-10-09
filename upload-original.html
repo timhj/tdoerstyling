@@ -5,13 +5,11 @@
         <meta name='description' content="" />
               
         <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width">
         
 		        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssnormalize/cssnormalize-min.css">
     	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
-    	<link rel="stylesheet" type="text/css" href="./css/thingdoer.css">
-		
-        <script type='text/javascript' src="http://code.jquery.com/jquery-latest.min.js"></script>
+    	        <script type='text/javascript' src="http://code.jquery.com/jquery-latest.min.js"></script>
                 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&libraries=places&sensor=true"></script>
                 <script type='text/javascript' src="./js/standard.js"></script>
         <script type='text/javascript' src="./js/modernizr.js"></script>
@@ -20,7 +18,11 @@
         <script type='text/javascript' src="./js/aspect-correct.js"></script>
         <script type='text/javascript' src="./js/jquery-ui-1.10.3.custom.min.js"></script>
     	<script type='text/javascript' src="http://yui.yahooapis.com/3.9.1/build/yui/yui-min.js"></script>
-    	        		<script type="text/javascript">
+    			<link rel="stylesheet" type="text/css" href="http://dev.thingdoer.sworx.com.au/css/thingdoer.css">
+		<link rel="stylesheet" type="text/css" href="http://dev.thingdoer.sworx.com.au/css/thingdoer.responsive.css">
+		<script type="text/javascript" src="http://dev.thingdoer.sworx.com.au/js/thingdoer.script.js"></script>		
+		<link rel="stylesheet" type="text/css" href="./css/hack-fixes.css">
+		        		<script type="text/javascript">
 		  // google async snippet initialise
 		  var _gaq = _gaq || [];
 		  _gaq.push(['_setAccount', 'UA-41773188-1']);
@@ -29,8 +31,9 @@
 		
 		  (function() {
 		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			// enabling ad data tracking
+		    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+		    		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 		  })();
 		
 		</script>
@@ -65,11 +68,15 @@
 			});
 			
     	});
-    	function modal(info_type){
+    	function modal(info_type,fragment,header_and_content){
+			info_type = typeof info_type !== 'undefined' ? info_type : false;
+			fragment = typeof fragment !== 'undefined' ? fragment : false;
+    		header_and_content = typeof header_and_content !== 'undefined' ? header_and_content : 'true';
     		$.ajax({
     			url: '/autocomplete/phrase/',
         		data: { term: info_type,
-            			header_and_content: 'true'
+            			header_and_content: header_and_content,
+            			fragment: fragment
         		},
         		success: function ( data ) {
         			output = JSON.parse(data);
@@ -84,15 +91,15 @@
     	<div id="page">
     		<div id="header">
     			<div id="things-to-do-links" class="yui3-g">
-    				<span class="yui3-u" id="logo-title">thingdoer <sup>209</sup></span>
-    				<span class="welcome-back yui3-u">
-    					    				<a href="/" title="Things to do" class="">Things to do</a> - 
+    				<span class="yui3-u-1-3" id="logo-title">thingdoer <sup>186</sup></span>
+    				<span class="welcome-back yui3-u-2-3">
+    					    				<a href="/" title="Things to do" class="">Things to do</a>  
 
-	    				    				<a href="/find-things-to-do/" title="Browse things" class="">Browse things</a> - 
+	    				    				<a href="/find-things-to-do/" title="Browse things" class="">Browse things</a>  
 
-	    				    				<a href="/thing/edit/" title="Add things" class="active">Add things</a> - 
+	    				    				<a href="/thing/edit/" title="Add things" class="">Add things</a>  
 
-	    			    										Welcome back <a href="/user/profile">timhj</a> - (<em>552</em>) 
+	    			    										Welcome back <a href="/user/profile">timhj</a> - (<em>530</em>) 
 						<!-- <span id="notification-indicator" class="active">FLAG_ICON</span> --><a href="/user/logout">logout</a> 
 					 
 					</span> <!-- // welcome-back -->
@@ -101,46 +108,30 @@
     				</span>
     			</div>
     			<div id="main-search-box" class="yui3-g">
-    				<div class="logo yui3-u-3-8">
+    				<!-- <div class="logo yui3-u-3-8">
     					<a href="/" title="things to do"><span class="logo-image-will-replace">thingdoer</span></a>
-    				</div>
-    				<div id="search-inputs" class="yui3-u-5-8">
-    					<div class="content yui3-g">
-	    					<form action="/find-things-to-do/" method="get">
-		    					<input type="text" placeholder="find something to do..." name="like" class="yui3-u-4-5" />
+    				</div> -->
+    				<div id="search-inputs" class="yui3-u-1">
+    					<div class="content">
+    					     					<div class="search-title">Find something to do</div>
+    					 	    					<form action="/find-things-to-do/" method="get">
+		    					<input type="text" placeholder="E.G. Food things to do in Melbourne, Victoria" name="like" class="yui3-u-4-5" />
 		    					<button type="submit" class="button yui3-u-1-5">search</button>
 		    				</form>
     					</div>
 	    				<div class="footer">
-	    					Popular searches: 
+	    				 	    					<!--Popular searches: -->
 	    						    						    					<a href="/find-things-to-do/?like=sydney">Things to do in sydney</a>,
 	    						    					<a href="/find-things-to-do/?like=walks">Things to do like walks</a>,
 	    						    					<a href="/find-things-to-do/?like=food">Things to do for food</a>,
-	    						    				</div>
-    				</div>
+	    						    					
+	    				</div> <!-- // .footer -->
+	    				<a href="#" class="advance-search">Advanced Search</a>
+	    				    				</div>
     			</div> <!-- // #main-search-box -->
-	    		<div class="navigation">
-	    			<ul id="nav" class="yui3-g">
-	    				    				<li class="yui3-u-1-3 ">
-	    					<div class="menu-button">
-	    						<a href="/" title="Things to do">Things to do</a>
-	    					</div>
-	    				</li>
-	    				    				<li class="yui3-u-1-3 ">
-	    					<div class="menu-button">
-	    						<a href="/find-things-to-do/" title="Browse things">Browse things</a>
-	    					</div>
-	    				</li>
-	    				    				<li class="yui3-u-1-3 active">
-	    					<div class="menu-button">
-	    						<a href="/thing/edit/" title="Add things">Add things</a>
-	    					</div>
-	    				</li>
-	    				    			</ul>
-	    		</div> <!-- // #navigation -->
-    		</div> <!-- // #header -->
-    		<div class="block">
-	    		<div id="content-wrapper">
+	    		    		</div> <!-- // #header -->
+    		<div class="block yui3-g">
+	    		<div id="content-wrapper" class="yui3-u-2-3">
 	    				    		<div class="content">
 				    	<div class="main-heading">
 				    		<h1>Create a&nbsp;thing</h1>
@@ -150,7 +141,9 @@
 					    					    	</div> <!-- // .intro-copy -->
 				    					    	<div class="user-notifications">
 																		    	</div> <!-- // #user-notifications -->
-				       <div class="formo-form yui3-form" id="form-container-thing">
+				       				    	<div class="additional-header-markup">
+				    						    	</div> <!-- // .additional-header-markup -->
+				    					       <div class="formo-form yui3-form" id="form-container-thing">
 	<legend>thing</legend>
 	<form method="post" action="/thing/edit" class="yui3-form yui3-form-aligned" id="thing" enctype="multipart/form-data">																
 <div class="field yui3-control-group formo-input" id="field-container-title">
@@ -158,8 +151,7 @@
 		
 	<span class="form-input-details">
 			<label for="title">Title</label>
-				<span class="more-info">What is the thing to do?</span>
-		</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -176,7 +168,7 @@
 		
 	<span class="form-input-details">
 			<label for="description">Description</label>
-				<span class="more-info">Tell us more about the thing to do here - what to look out for, avoid, and anything else to have a great time!</span>
+				<span class="more-info">Tell us more about the thing to do</span>
 		</span>
 	
 	
@@ -193,9 +185,8 @@
 	
 		
 	<span class="form-input-details">
-			<span class="title">Cost</span>
-				<span class="more-info">Approximately how much per head do you think this costs?</span>
-		</span>
+			<span class="title">Price</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -231,14 +222,65 @@
 				</span>
 	</span>
 </div>
+				
+<div class="field yui3-control-group formo-input" id="field-container-prepRequired">
+	
+		
+	<span class="form-input-details">
+			<label for="prepRequired">Effort</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="range" value="" name="thing[prepRequired]" class="" id="prepRequired" min="0" max="5">
+				<div class="yui3-g slider-options">
+					<div class="yui3-u-1-3">Easy</div>
+					<div class="yui3-u-1-3">Average</div>
+					<div class="yui3-u-1-3">Hard</div>
+			
+		</div> 
+				
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+				
+<div class="field yui3-control-group formo-checkboxes" id="field-container-weathers">
+	
+		
+	<span class="form-input-details">
+			<span class="title">Weather</span>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<div class="checkbox opts yui3-u">
+	<label class="checkbox light-rain">
+		
+		<div class="label-content">
+			<input type="checkbox" name="thing[weathers][]" value="3"  /> <span class="opt-label">Bad weather</span>
+		</div>
+	</label>
+	<label class="checkbox sunny">
+		
+		<div class="label-content">
+			<input type="checkbox" name="thing[weathers][]" value="8"  /> <span class="opt-label">Good weather</span>
+		</div>
+	</label>
+</div>					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
 												
 <div class="field yui3-control-group formo-checkboxes" id="field-container-times">
 	
 		
 	<span class="form-input-details">
 			<span class="title">Time of day</span>
-				<span class="more-info">What times of day or night are best to do this thing?</span>
-		</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -266,1067 +308,36 @@
 		<span class="error-messages">
 				</span>
 	</span>
-</div>
-																
-<div class="field yui3-control-group formo-input" id="field-container-prepRequired">
-	
-		
-	<span class="form-input-details">
-			<label for="prepRequired">Preparation or effort required</label>
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="range" value="" name="thing[prepRequired]" class="" id="prepRequired" min="0" max="5">
-				<div class="yui3-g slider-options">
-					<div class="yui3-u-1-3">Ready to go!</div>
-					<div class="yui3-u-1-3">Some preparation</div>
-					<div class="yui3-u-1-3">Plan this well!</div>
-			
-		</div> 
-				
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																																																												
-	<div class="weblink-wrappers" id="weblink-wrappers">
-		<span class="form-input-details">
-			<span class="title">Links</span><br /> 			<span class="more-info">Are there any links related to the thing you've listed here? e.g the business listing, reviews, Facebook, etc.</span>
-		</span>
-		<span id="item-form-containers">
-
-
-<div class="formo-group" id="form-container-weblink1">
-																	
-<div class="field yui3-control-group formo-input" id="field-container-url">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="weblink1[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="weblink1[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-weblink2">
-																	
-<div class="field yui3-control-group formo-input" id="field-container-url">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="weblink2[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="weblink2[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-weblink3">
-																	
-<div class="field yui3-control-group formo-input" id="field-container-url">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="weblink3[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="weblink3[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-weblink4">
-																	
-<div class="field yui3-control-group formo-input" id="field-container-url">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="weblink4[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="weblink4[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-weblink5">
-																	
-<div class="field yui3-control-group formo-input" id="field-container-url">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="weblink5[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="weblink5[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-		<span class="additional-buttons">
-			<button type="button" id="add-another-weblink" class="add-another">Add another weblink</button>
-		</span>
-		</span> <!-- // #item-form-containers -->
-		<script type="text/javascript">
-			jQuery(function(){ // mnimics document ready
-				$('.weblink-wrappers input#url[value=""]').parent().parent().parent().hide();
-				$('#form-container-weblink1').show();
-				$('.weblink-wrappers button.add-another').click(function(){
-					$('[id^="form-container-weblink"]:hidden:first').slideDown();
-				});
-			});
-			
-			$('.weblink-wrappers button[id^="remove"]').click(function(){
-				// do whatever's required to bounce the  bit
-				if($(this).parent().find('input').hasClass('to-be-deleted-on-submit')) {
-					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('false');
-					$(this).parent().find('input').removeClass('to-be-deleted-on-submit');
-					$(this).html('remove');
-				} else {
-					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('true');
-					$(this).parent().find('input').addClass('to-be-deleted-on-submit');
-					$(this).html('restore');
-				}
-			});
-		</script>
-	</div> <!-- // .item-wrappers -->
-
-				
-	<div class="item-wrappers" id="item-wrappers">
-		<span class="form-input-details">
-			<span class="title">Thing's you'll need</span><br /> 			<span class="more-info">Is there anything you need to do this thing? e.g. a Car, hiking boots, or even a camera? Write them in here.</span>
-		</span>
-		<span id="item-form-containers">
-
-
-<div class="formo-group" id="form-container-item1">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item1[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item1[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item2">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item2[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item2[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item3">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item3[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item3[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item4">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item4[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item4[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item5">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item5[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item5[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item6">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item6[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item6[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item7">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item7[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item7[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item8">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item8[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item8[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item9">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item9[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item9[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item10">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item10[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item10[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item11">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item11[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item11[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item12">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item12[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item12[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item13">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item13[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item13[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item14">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item14[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item14[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item15">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item15[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item15[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item16">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item16[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item16[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item17">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item17[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item17[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item18">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item18[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item18[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item19">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item19[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item19[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-
-				
-
-
-<div class="formo-group" id="form-container-item20">
-									
-<div class="field yui3-control-group formo-input" id="field-container-title">
-	
-	
-	<span class="form-input-bits">
-	<input type="text" value="" name="item20[title]" class="" id="title" placeholder="e.g. A bicycle">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-																				
-<div class="field yui3-control-group formo-input" id="field-container-delete">
-	
-		
-	<span class="form-input-details">
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="hidden" value="false" name="item20[delete]" class="" id="delete">
-					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-			</div>
-
-		<span class="additional-buttons">
-			<button type="button" id="add-another-item" class="add-another">Add another item</button>
-		</span>
-		</span> <!-- // #item-form-containers -->
-		<script type="text/javascript">
-			jQuery(function(){ // mnimics document ready
-				$('.item-wrappers input#title[value=""]').parent().parent().parent().hide();
-				$('#form-container-item1').show();
-				$('.item-wrappers button.add-another').click(function(){
-					$('[id^="form-container-item"]:hidden:first').slideDown();
-				});
-			});
-			
-			$('.item-wrappers button[id^="remove"]').click(function(){
-				// do whatever's required to bounce the  bit
-				if($(this).parent().find('input').hasClass('to-be-deleted-on-submit')) {
-					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('false');
-					$(this).parent().find('input').removeClass('to-be-deleted-on-submit');
-					$(this).html('remove');
-				} else {
-					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('true');
-					$(this).parent().find('input').addClass('to-be-deleted-on-submit');
-					$(this).html('restore');
-				}
-			});
-		</script>
-	</div> <!-- // .item-wrappers -->
-
-				
-<div class="field yui3-control-group formo-checkboxes" id="field-container-weathers">
-	
-		
-	<span class="form-input-details">
-			<span class="title">Suitable weather</span>
-				<span class="more-info">Let us know what the best weather conditions for your thing are, by checking the below boxes.</span>
-		</span>
-	
-	
-	<span class="form-input-bits">
-	<div class="checkbox opts yui3-u">
-	<label class="checkbox light-rain">
-		
-		<div class="label-content">
-			<input type="checkbox" name="thing[weathers][]" value="3"  /> <span class="opt-label">Bad weather</span>
-		</div>
-	</label>
-	<label class="checkbox sunny">
-		
-		<div class="label-content">
-			<input type="checkbox" name="thing[weathers][]" value="8"  /> <span class="opt-label">Good weather</span>
-		</div>
-	</label>
-</div>					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-					<div class="everywhere-wrapper">
-			<span class="title location">Location</span><br />
-		</span>	
-
-<div class="field yui3-control-group formo-radios" id="field-container-isEverywhere">
-	
-		
-	<span class="form-input-details">
-			<span class="title">Can you do this thing everywhere?</span>
-				<span class="more-info">Is this a thing you can do anywhere or is there a place associated with it?</span>
-		</span>
-	
-	
-	<span class="form-input-bits">
-	<div class="radio opts yui3-u">
-	<label class="radio">
-		<span class="label-content">
-			<input type="radio" name="thing[isEverywhere]" value="yes"  checked="checked" /> <span class="opt-label">Yes</span>
-		</span> 
-	</label>
-	<label class="radio">
-		<span class="label-content">
-			<input type="radio" name="thing[isEverywhere]" value="no"  /> <span class="opt-label">No</span>
-		</span> 
-	</label>
-</div>					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
- 
-</div> <!-- // .xxx-wrappers --> 
-				
+</div>				
 	<div class="place-wrappers" id="place-wrappers">
 		<span class="form-input-details">
-						<span class="more-info">Tell us below where the main location for this thing is. Don't worry if your thing includes multiple locations - you can add as many as you need.</span>
-		</span>
+								</span>
 		<span id="item-form-containers">
-
-
 <div class="formo-group" id="form-container-place1">
 									
 <div class="field yui3-control-group formo-input" id="field-container-title">
 	
 		
 	<span class="form-input-details">
-			<label for="title">Title</label>
-				<span class="more-info">Tell us what you call this place</span>
-		</span>
+			<label for="title">Location name</label>
+			</span>
 	
 	
 	<span class="form-input-bits">
-	<input type="text" value="" name="place1[title]" class="" id="title">
+	<input type="text" value="" name="place1[title]" class="" id="title" placeholder="ie. The soho house">
 					
 	
 		<span class="error-messages">
 				</span>
 	</span>
 </div>
-				
+								
 <div class="field yui3-control-group formo-input" id="field-container-place_auto_complete_input">
 	
 		
 	<span class="form-input-details">
-			<label for="place_auto_complete_input">Location</label>
-				<span class="more-info">Tell us where you can find this place</span>
-		</span>
+			<label for="place_auto_complete_input">Address</label>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -1506,8 +517,6 @@
 
 
 				
-
-
 <div class="formo-group" id="form-container-place2">
 									
 <div class="field yui3-control-group formo-input" id="field-container-title">
@@ -1515,8 +524,7 @@
 		
 	<span class="form-input-details">
 			<label for="title">Title</label>
-				<span class="more-info">Tell us what you call this place</span>
-		</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -1696,8 +704,6 @@
 
 
 				
-
-
 <div class="formo-group" id="form-container-place3">
 									
 <div class="field yui3-control-group formo-input" id="field-container-title">
@@ -1705,8 +711,7 @@
 		
 	<span class="form-input-details">
 			<label for="title">Title</label>
-				<span class="more-info">Tell us what you call this place</span>
-		</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -1886,8 +891,6 @@
 
 
 				
-
-
 <div class="formo-group" id="form-container-place4">
 									
 <div class="field yui3-control-group formo-input" id="field-container-title">
@@ -1895,8 +898,7 @@
 		
 	<span class="form-input-details">
 			<label for="title">Title</label>
-				<span class="more-info">Tell us what you call this place</span>
-		</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -2076,8 +1078,6 @@
 
 
 				
-
-
 <div class="formo-group" id="form-container-place5">
 									
 <div class="field yui3-control-group formo-input" id="field-container-title">
@@ -2085,8 +1085,7 @@
 		
 	<span class="form-input-details">
 			<label for="title">Title</label>
-				<span class="more-info">Tell us what you call this place</span>
-		</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -2293,6 +1292,7 @@
 <script type="text/javascript">
 var map;
 var marker = {};
+var waiting = false;
 var active_place_form = '1';
 function initializeMap()
 {
@@ -2340,15 +1340,30 @@ function initializeMap()
 		location.hash = "#google-map"; 
 		openMarker(marker_id);
 	});
-
+function inputCurrentLocation(position){
+	// this is the callback function for getting users location on the current location button
+	geoCodeAndMark(position,$('#form-container-place'+active_place_form+' input#title').val(),'updatePlaceForm');
+	$('p.map-help').effect("highlight", {}, 3000);	
+}
+	
 /**
  * Take the input from the form, geocode it and drop it on the map
  */
 var confirmwindow;
 var confirmmarker;
 function geoCodeAndMark(address,title,callback) {
+	var geoCodeVars = {};
+	if (address.coords) {
+		// address has been sent as JS location object
+		var locationPoint = new google.maps.LatLng(address.coords.latitude,address.coords.longitude);
+		geoCodeVars = {'latLng' : locationPoint};
+	} else {
+		geoCodeVars = {'address' : address};
+	}
+
+	
 	geocoder = new google.maps.Geocoder();
-	geocoder.geocode({ 'address': address }, function(results, status) {
+	geocoder.geocode(geoCodeVars, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			// run the callback
 			if(typeof window[callback] == 'function') {
@@ -2361,8 +1376,8 @@ function geoCodeAndMark(address,title,callback) {
 				title: title,
 				draggable: true,
 				position: results[0].geometry.location,
-				icon: 'http://www.thingdoer.com/media/img/markers/33/33-blank.png',
-				/*shadow: 'http://www.thingdoer.com/media/img/markers/33/33-shadow.png',*/
+				icon: 'http://thingdoer.dev/media/img/markers/33/33-blank.png',
+				/*shadow: 'http://thingdoer.dev/media/img/markers/33/33-shadow.png',*/
 			});
 			 
 			/*'Is this the place you\'re looking for? '+ marker.title + '?<br /><button type="button" id="map-confirm" onclick="$(\'form#place\').submit();">confirm_and_save</button><br /><sub>Drag the marker to the right location if it\'s wrong</sub>',*/
@@ -2408,27 +1423,40 @@ $(document).keypress(
         event.preventDefault(); // stop enter from submitting entire form
      } 
      if(event.which == '9' && $('[id^=form-container-place] input#title]').is(':focus')) {
-		alert('that was a tab');
     	 event.preventDefault();  // block it tabbing to the next title field
  		$('input#place_auto_complete_input').focus();
      } 
 });		
 
+function reverse_geocode(lat,lng,callback) {
+	var geocoder = new google.maps.Geocoder();
+	var locationPoint = new google.maps.LatLng(lat,lng);
+  	geocoder.geocode({'latLng': locationPoint}, function(results, status) {
+  	   if (results[0]) {
+ 		   window[callback](results[0]);
+  	   } 
+  	});
+}
+
 function save_location_and_next(){
 	confirmmarker.setMap(null);
     var old_form_id = '#form-container-place'+active_place_form;
     var old_location = new google.maps.LatLng($(old_form_id+' #latitude').val(),$(old_form_id+' #longitude').val());	
+    // rev geocode the new location and populate form details with location
+  	reverse_geocode($(old_form_id+' #latitude').val(),$(old_form_id+' #longitude').val(),'updatePlaceForm');
+  	
     marker = new google.maps.Marker({
 		map: map,
 		title: old_form_id,
 		draggable: false,
 		position: old_location
 	});
+    
 	var infoWindow = new google.maps.InfoWindow(
 	{ 	
 		content: '<div style="line-height:1.35;overflow:hidden;white-space:nowrap;"><strong>'+$(old_form_id+' #title').val()+'</strong><br />'+
-		$(old_form_id+' #streetNumber').val()+' '+
-		$(old_form_id+' #street').val()+' '+
+		//$(old_form_id+' #streetNumber').val()+' '+
+		//$(old_form_id+' #street').val()+' '+
 		$(old_form_id+' #suburb').val()+', '+
 		$(old_form_id+' #state').val()+' '+
 		$(old_form_id+' #postcode').val()+'</div>',
@@ -2439,8 +1467,6 @@ function save_location_and_next(){
 		infoWindow.open(map,marker);
 	});
 	map.setZoom(parseFloat(map.zoom)-4);
-
-	location.hash = '#field-container-proximity'; 
 }
 
 function close_and_back(){
@@ -2477,7 +1503,7 @@ function updatePlaceForm(maps_return_info) {
 				break;
 				case 'route':
 					$('#form-container-place'+active_place_form+' #street').val(address_component.long_name);
-					console.log('street: '+address_component.long_name);
+					console.log('area: '+address_component.long_name);
 				break;
 				case 'locality':
 					$('#form-container-place'+active_place_form+' #suburb').val(address_component.long_name);
@@ -2512,9 +1538,6 @@ $('[id^=form-container-place] input#title').focus(function(){
 });
 	google.maps.event.addDomListener(window, 'load', initializeMap);
 </script>
-	<div class="yui3-u-1">
-	<p class="map-help">Find your place on the map. If it's not in the right spot, simply drag the marker, and hit the button once you're happy!</p>
-</div>
 <div class="yui3-u-1" id="google-map" style="width:100%;height:300px;"></div>
 	<script type="text/javascript">
 		jQuery(function(){ // mnimics document ready
@@ -2533,32 +1556,24 @@ $('[id^=form-container-place] input#title').focus(function(){
 	</div> <!-- // .item-wrappers -->
 
 								
-	<div class="photo-wrappers" id="photo-wrappers">
+	<div class="weblink-wrappers" id="weblink-wrappers">
 		<span class="form-input-details">
-			<span class="title">Photos</span><br /> 			<span class="more-info">Do you have a photo for your thing? upload them here.</span>
-		</span>
+			<span class="title">Links</span><br /> 					</span>
 		<span id="item-form-containers">
-
-
-<div class="formo-group" id="form-container-photo1">
-													
-<div class="field yui3-control-group formo-input" id="field-container-caption">
-	
-		
-	<span class="form-input-details">
-			<label for="caption">Caption</label>
-			</span>
+<div class="formo-group" id="form-container-weblink1">
+																	
+<div class="field yui3-control-group formo-input" id="field-container-url">
 	
 	
 	<span class="form-input-bits">
-	<input type="text" value="" name="photo1[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+	<input type="text" value="" name="weblink1[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
 					
 	
 		<span class="error-messages">
 				</span>
 	</span>
 </div>
-																				
+																
 <div class="field yui3-control-group formo-input" id="field-container-delete">
 	
 		
@@ -2567,26 +1582,8 @@ $('[id^=form-container-place] input#title').focus(function(){
 	
 	
 	<span class="form-input-bits">
-	<input type="hidden" value="false" name="photo1[delete]" class="" id="delete">
+	<input type="hidden" value="false" name="weblink1[delete]" class="" id="delete">
 					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-				
-<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
-	
-		
-	<span class="form-input-details">
-			<label for="photo_upload">Photo upload</label>
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="file" value="" name="photo1[photo_upload]" class="" id="photo_upload">
-					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
-			
 	
 		<span class="error-messages">
 				</span>
@@ -2596,27 +1593,20 @@ $('[id^=form-container-place] input#title').focus(function(){
 
 
 				
-
-
-<div class="formo-group" id="form-container-photo2">
-													
-<div class="field yui3-control-group formo-input" id="field-container-caption">
-	
-		
-	<span class="form-input-details">
-			<label for="caption">Caption</label>
-			</span>
+<div class="formo-group" id="form-container-weblink2">
+																	
+<div class="field yui3-control-group formo-input" id="field-container-url">
 	
 	
 	<span class="form-input-bits">
-	<input type="text" value="" name="photo2[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+	<input type="text" value="" name="weblink2[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
 					
 	
 		<span class="error-messages">
 				</span>
 	</span>
 </div>
-																				
+																
 <div class="field yui3-control-group formo-input" id="field-container-delete">
 	
 		
@@ -2625,26 +1615,8 @@ $('[id^=form-container-place] input#title').focus(function(){
 	
 	
 	<span class="form-input-bits">
-	<input type="hidden" value="false" name="photo2[delete]" class="" id="delete">
+	<input type="hidden" value="false" name="weblink2[delete]" class="" id="delete">
 					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-				
-<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
-	
-		
-	<span class="form-input-details">
-			<label for="photo_upload">Photo upload</label>
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="file" value="" name="photo2[photo_upload]" class="" id="photo_upload">
-					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
-			
 	
 		<span class="error-messages">
 				</span>
@@ -2654,27 +1626,20 @@ $('[id^=form-container-place] input#title').focus(function(){
 
 
 				
-
-
-<div class="formo-group" id="form-container-photo3">
-													
-<div class="field yui3-control-group formo-input" id="field-container-caption">
-	
-		
-	<span class="form-input-details">
-			<label for="caption">Caption</label>
-			</span>
+<div class="formo-group" id="form-container-weblink3">
+																	
+<div class="field yui3-control-group formo-input" id="field-container-url">
 	
 	
 	<span class="form-input-bits">
-	<input type="text" value="" name="photo3[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+	<input type="text" value="" name="weblink3[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
 					
 	
 		<span class="error-messages">
 				</span>
 	</span>
 </div>
-																				
+																
 <div class="field yui3-control-group formo-input" id="field-container-delete">
 	
 		
@@ -2683,26 +1648,8 @@ $('[id^=form-container-place] input#title').focus(function(){
 	
 	
 	<span class="form-input-bits">
-	<input type="hidden" value="false" name="photo3[delete]" class="" id="delete">
+	<input type="hidden" value="false" name="weblink3[delete]" class="" id="delete">
 					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-				
-<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
-	
-		
-	<span class="form-input-details">
-			<label for="photo_upload">Photo upload</label>
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="file" value="" name="photo3[photo_upload]" class="" id="photo_upload">
-					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
-			
 	
 		<span class="error-messages">
 				</span>
@@ -2712,27 +1659,20 @@ $('[id^=form-container-place] input#title').focus(function(){
 
 
 				
-
-
-<div class="formo-group" id="form-container-photo4">
-													
-<div class="field yui3-control-group formo-input" id="field-container-caption">
-	
-		
-	<span class="form-input-details">
-			<label for="caption">Caption</label>
-			</span>
+<div class="formo-group" id="form-container-weblink4">
+																	
+<div class="field yui3-control-group formo-input" id="field-container-url">
 	
 	
 	<span class="form-input-bits">
-	<input type="text" value="" name="photo4[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+	<input type="text" value="" name="weblink4[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
 					
 	
 		<span class="error-messages">
 				</span>
 	</span>
 </div>
-																				
+																
 <div class="field yui3-control-group formo-input" id="field-container-delete">
 	
 		
@@ -2741,26 +1681,8 @@ $('[id^=form-container-place] input#title').focus(function(){
 	
 	
 	<span class="form-input-bits">
-	<input type="hidden" value="false" name="photo4[delete]" class="" id="delete">
+	<input type="hidden" value="false" name="weblink4[delete]" class="" id="delete">
 					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-				
-<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
-	
-		
-	<span class="form-input-details">
-			<label for="photo_upload">Photo upload</label>
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="file" value="" name="photo4[photo_upload]" class="" id="photo_upload">
-					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
-			
 	
 		<span class="error-messages">
 				</span>
@@ -2770,27 +1692,20 @@ $('[id^=form-container-place] input#title').focus(function(){
 
 
 				
-
-
-<div class="formo-group" id="form-container-photo5">
-													
-<div class="field yui3-control-group formo-input" id="field-container-caption">
-	
-		
-	<span class="form-input-details">
-			<label for="caption">Caption</label>
-			</span>
+<div class="formo-group" id="form-container-weblink5">
+																	
+<div class="field yui3-control-group formo-input" id="field-container-url">
 	
 	
 	<span class="form-input-bits">
-	<input type="text" value="" name="photo5[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+	<input type="text" value="" name="weblink5[url]" class="" id="url" placeholder="e.g. www.thingdoer.com">
 					
 	
 		<span class="error-messages">
 				</span>
 	</span>
 </div>
-																				
+																
 <div class="field yui3-control-group formo-input" id="field-container-delete">
 	
 		
@@ -2799,26 +1714,8 @@ $('[id^=form-container-place] input#title').focus(function(){
 	
 	
 	<span class="form-input-bits">
-	<input type="hidden" value="false" name="photo5[delete]" class="" id="delete">
+	<input type="hidden" value="false" name="weblink5[delete]" class="" id="delete">
 					
-	
-		<span class="error-messages">
-				</span>
-	</span>
-</div>
-				
-<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
-	
-		
-	<span class="form-input-details">
-			<label for="photo_upload">Photo upload</label>
-			</span>
-	
-	
-	<span class="form-input-bits">
-	<input type="file" value="" name="photo5[photo_upload]" class="" id="photo_upload">
-					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
-			
 	
 		<span class="error-messages">
 				</span>
@@ -2827,19 +1724,710 @@ $('[id^=form-container-place] input#title').focus(function(){
 			</div>
 
 		<span class="additional-buttons">
-			<button type="button" id="add-another-photo" class="add-another">Add another photo</button>
+			<button type="button" id="add-another-weblink" class="add-another">Add another weblink</button>
 		</span>
 		</span> <!-- // #item-form-containers -->
 		<script type="text/javascript">
 			jQuery(function(){ // mnimics document ready
-				$('.photo-wrappers input#caption[value=""]').parent().parent().parent().hide();
-				$('#form-container-photo1').show();
-				$('.photo-wrappers button.add-another').click(function(){
-					$('[id^="form-container-photo"]:hidden:first').slideDown();
+				$('.weblink-wrappers input#url[value=""]').parent().parent().parent().hide();
+				$('#form-container-weblink1').show();
+				$('.weblink-wrappers button.add-another').click(function(){
+					$('[id^="form-container-weblink"]:hidden:first').slideDown();
 				});
 			});
 			
-			$('.photo-wrappers button[id^="remove"]').click(function(){
+			$('.weblink-wrappers button[id^="remove"]').click(function(){
+				// do whatever's required to bounce the  bit
+				if($(this).parent().find('input').hasClass('to-be-deleted-on-submit')) {
+					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('false');
+					$(this).parent().find('input').removeClass('to-be-deleted-on-submit');
+					$(this).html('remove');
+				} else {
+					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('true');
+					$(this).parent().find('input').addClass('to-be-deleted-on-submit');
+					$(this).html('restore');
+				}
+			});
+		</script>
+	</div> <!-- // .item-wrappers -->
+
+				
+	<div class="item-wrappers" id="item-wrappers">
+		<span class="form-input-details">
+			<span class="title">Thing's you'll need</span><br /> 					</span>
+		<span id="item-form-containers">
+<div class="formo-group" id="form-container-item1">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item1[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item1[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item2">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item2[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item2[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item3">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item3[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item3[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item4">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item4[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item4[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item5">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item5[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item5[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item6">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item6[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item6[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item7">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item7[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item7[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item8">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item8[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item8[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item9">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item9[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item9[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item10">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item10[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item10[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item11">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item11[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item11[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item12">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item12[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item12[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item13">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item13[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item13[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item14">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item14[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item14[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item15">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item15[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item15[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item16">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item16[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item16[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item17">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item17[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item17[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item18">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item18[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item18[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item19">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item19[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item19[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-item20">
+									
+<div class="field yui3-control-group formo-input" id="field-container-title">
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="item20[title]" class="" id="title" placeholder="e.g. A bicycle">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="item20[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+		<span class="additional-buttons">
+			<button type="button" id="add-another-item" class="add-another">Add another item</button>
+		</span>
+		</span> <!-- // #item-form-containers -->
+		<script type="text/javascript">
+			jQuery(function(){ // mnimics document ready
+				$('.item-wrappers input#title[value=""]').parent().parent().parent().hide();
+				$('#form-container-item1').show();
+				$('.item-wrappers button.add-another').click(function(){
+					$('[id^="form-container-item"]:hidden:first').slideDown();
+				});
+			});
+			
+			$('.item-wrappers button[id^="remove"]').click(function(){
 				// do whatever's required to bounce the  bit
 				if($(this).parent().find('input').hasClass('to-be-deleted-on-submit')) {
 					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('false');
@@ -2859,9 +2447,8 @@ $('[id^=form-container-place] input#title').focus(function(){
 	
 		
 	<span class="form-input-details">
-			<span class="title">Types of thing</span>
-				<span class="more-info">Nearly there! Now click any of the categories below that you think your thing might belong to. For example, if your thing is a Romantic Dinner for Two On the water, hit the "Romantic", "Food", and "Scenic" icons below!</span>
-		</span>
+			<span class="title">Categories</span>
+			</span>
 	
 	
 	<span class="form-input-bits">
@@ -2945,6 +2532,317 @@ $('[id^=form-container-place] input#title').focus(function(){
 	</span>
 </div>
 				
+	<div class="photo-wrappers" id="photo-wrappers">
+		<span class="form-input-details">
+			<span class="title">Photos</span><br /> 			<span class="more-info">Do you have a photo for your thing? upload them here.</span>		</span>
+		<span id="item-form-containers">
+<div class="formo-group" id="form-container-photo1">
+													
+<div class="field yui3-control-group formo-input" id="field-container-caption">
+	
+		
+	<span class="form-input-details">
+			<label for="caption">Caption</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="photo1[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="photo1[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+				
+<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
+	
+		
+	<span class="form-input-details">
+			<label for="photo_upload">Photo upload</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="file" value="" name="photo1[photo_upload]" class="" id="photo_upload">
+					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
+			
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-photo2">
+													
+<div class="field yui3-control-group formo-input" id="field-container-caption">
+	
+		
+	<span class="form-input-details">
+			<label for="caption">Caption</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="photo2[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="photo2[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+				
+<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
+	
+		
+	<span class="form-input-details">
+			<label for="photo_upload">Photo upload</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="file" value="" name="photo2[photo_upload]" class="" id="photo_upload">
+					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
+			
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-photo3">
+													
+<div class="field yui3-control-group formo-input" id="field-container-caption">
+	
+		
+	<span class="form-input-details">
+			<label for="caption">Caption</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="photo3[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="photo3[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+				
+<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
+	
+		
+	<span class="form-input-details">
+			<label for="photo_upload">Photo upload</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="file" value="" name="photo3[photo_upload]" class="" id="photo_upload">
+					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
+			
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-photo4">
+													
+<div class="field yui3-control-group formo-input" id="field-container-caption">
+	
+		
+	<span class="form-input-details">
+			<label for="caption">Caption</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="photo4[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="photo4[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+				
+<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
+	
+		
+	<span class="form-input-details">
+			<label for="photo_upload">Photo upload</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="file" value="" name="photo4[photo_upload]" class="" id="photo_upload">
+					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
+			
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+
+				
+<div class="formo-group" id="form-container-photo5">
+													
+<div class="field yui3-control-group formo-input" id="field-container-caption">
+	
+		
+	<span class="form-input-details">
+			<label for="caption">Caption</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="text" value="" name="photo5[caption]" class="" id="caption" placeholder="e.g. View from the balcony">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+																				
+<div class="field yui3-control-group formo-input" id="field-container-delete">
+	
+		
+	<span class="form-input-details">
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="hidden" value="false" name="photo5[delete]" class="" id="delete">
+					
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+				
+<div class="field yui3-control-group formo-file" id="field-container-photo_upload">
+	
+		
+	<span class="form-input-details">
+			<label for="photo_upload">Photo upload</label>
+			</span>
+	
+	
+	<span class="form-input-bits">
+	<input type="file" value="" name="photo5[photo_upload]" class="" id="photo_upload">
+					<span class="more-info">.jpg, & png. only, max file size 2MB</span>
+			
+	
+		<span class="error-messages">
+				</span>
+	</span>
+</div>
+			</div>
+
+		<span class="additional-buttons">
+			<button type="button" id="add-another-photo" class="add-another">Add another photo</button>
+		</span>
+		</span> <!-- // #item-form-containers -->
+		<script type="text/javascript">
+			jQuery(function(){ // mnimics document ready
+				$('.photo-wrappers input#caption[value=""]').parent().parent().parent().hide();
+				$('#form-container-photo1').show();
+				$('.photo-wrappers button.add-another').click(function(){
+					$('[id^="form-container-photo"]:hidden:first').slideDown();
+				});
+			});
+			
+			$('.photo-wrappers button[id^="remove"]').click(function(){
+				// do whatever's required to bounce the  bit
+				if($(this).parent().find('input').hasClass('to-be-deleted-on-submit')) {
+					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('false');
+					$(this).parent().find('input').removeClass('to-be-deleted-on-submit');
+					$(this).html('remove');
+				} else {
+					$(this).closest('.formo-group').find('#field-container-delete input#delete').val('true');
+					$(this).parent().find('input').addClass('to-be-deleted-on-submit');
+					$(this).html('restore');
+				}
+			});
+		</script>
+	</div> <!-- // .item-wrappers -->
+
+				
 <div class="field yui3-control-group formo-input" id="field-container-delete">
 	
 		
@@ -3000,36 +2898,46 @@ $('[id^=form-container-place] input#title').focus(function(){
 </div>				       				       
 			       </div> <!-- // .content -->
 			    </div> <!-- // .content-wrapper -->
-			    <div id="things-to-do-rhs" class="yui3-u">
+			    <div id="things-to-do-rhs" class="yui3-u-1-3">
 			    	<div class="module latest-things" id="latest-things">
 	<div class="module-header">
 		<h3>Latest things</h3>
 	</div>
 	<div class="module-content yui3-g">
 				
-		<div class="thing-to-do-feeder has-image yui3-u">
-					<img src="http://www.thingdoer.com/things-to-do-photos/3/2/324_s.jpg" alt="Margaritas at Rojo Rocket, Avoca thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/346/margaritas-at-rojo-rocket-avoca" title="Margaritas at Rojo Rocket, Avoca">Margaritas at Rojo Rocket, Avoca</a></span>
-					<span class="thing-feeder-location">Kincumber (Australia)</span>
-				</div>
+		<div class="thing-to-do-feeder no-image yui3-u">
+					<span class="thing-feeder-title"><a href="/thing/view/322/title" title="Title">Title</a></span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
 		
 		<div class="thing-to-do-feeder has-image yui3-u">
-					<img src="http://www.thingdoer.com/things-to-do-photos/3/2/321_s.jpg" alt="Frangelico affogato&#039;s at the Sugaroom, Pyrmont thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/345/frangelico-affogatos-at-the-sugaroom-pyrmont" title="Frangelico affogato's at the Sugaroom, Pyrmont">Frangelico affogato's at the Sugaroom, Pyrmont</a></span>
-					<span class="thing-feeder-location">Pyrmont (Australia)</span>
-				</div>
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/289_s.jpg" alt="Rottnest sunset spot thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/321/rottnest-sunset-spot" title="Rottnest sunset spot">Rottnest sunset spot</a></span>
+					<span class="thing-feeder-location">Rottnest Island (Australia)</span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
 		
 		<div class="thing-to-do-feeder has-image yui3-u">
-					<img src="http://www.thingdoer.com/things-to-do-photos/3/2/320_s.jpg" alt="Chess in Hyde Park thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/344/chess-in-hyde-park" title="Chess in Hyde Park">Chess in Hyde Park</a></span>
-					<span class="thing-feeder-location">Sydney (Australia)</span>
-				</div>
-		
-		<div class="thing-to-do-feeder has-image yui3-u">
-					<img src="http://www.thingdoer.com/things-to-do-photos/3/1/319_s.jpg" alt="Beer and prawns in surry hills thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/343/beer-and-prawns-in-surry-hills" title="Beer and prawns in surry hills">Beer and prawns in surry hills</a></span>
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/287_s.jpg" alt="Sandwich bliss @ Lucky Pickle thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/320/sandwich-bliss-lucky-pickle" title="Sandwich bliss @ Lucky Pickle">Sandwich bliss @ Lucky Pickle</a></span>
 					<span class="thing-feeder-location">Surry Hills (Australia)</span>
-				</div>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
 		
 		<div class="thing-to-do-feeder has-image yui3-u">
-					<img src="http://www.thingdoer.com/things-to-do-photos/3/1/318_s.jpg" alt="Create a new drinking game thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/342/create-a-new-drinking-game" title="Create a new drinking game">Create a new drinking game</a></span>
-				</div>
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/286_s.jpg" alt="Discover some art after hours thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/319/discover-some-art-after-hours" title="Discover some art after hours">Discover some art after hours</a></span>
+					<span class="thing-feeder-location">Sydney (Australia)</span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/285_s.jpg" alt="Pick up some fresh produce at Eveleigh  Farmers’ Market thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/318/pick-up-some-fresh-produce-at-eveleigh-farmers-market" title="Pick up some fresh produce at Eveleigh  Farmers’ Market">Pick up some fresh produce at Eveleigh  Farmers’ Market</a></span>
+					<span class="thing-feeder-location">Eveleigh (Australia)</span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
 		</div>
 		<div class="module-related">
 		<a href="" title=""></a>
@@ -3044,29 +2952,39 @@ $('[id^=form-container-place] input#title').focus(function(){
 	<div class="module-content yui3-g">
 				
 		<div class="thing-to-do-feeder has-image yui3-u">
-					<img src="http://www.thingdoer.com/things-to-do-photos/2/1/213_s.jpg" alt="Rock out at Vasco Bar thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/263/rock-out-at-vasco-bar" title="Rock out at Vasco Bar">Rock out at Vasco Bar</a></span>
-					<span class="thing-feeder-location">Surry Hills (Australia)</span>
-				</div>
-		
-		<div class="thing-to-do-feeder has-image yui3-u">
 					<img src="http://www.thingdoer.com/things-to-do-photos/4/46_s.jpg" alt="Govindas dinner and lay down movie thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/28/govindas-dinner-and-lay-down-movie" title="Govindas dinner and lay down movie">Govindas dinner and lay down movie</a></span>
 					<span class="thing-feeder-location">Darlinghurst (Australia)</span>
-				</div>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
 		
 		<div class="thing-to-do-feeder has-image yui3-u">
 					<img src="http://www.thingdoer.com/things-to-do-photos/3/38_s.jpg" alt="Get the ferry to Doyles thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/129/get-the-ferry-to-doyles" title="Get the ferry to Doyles">Get the ferry to Doyles</a></span>
 					<span class="thing-feeder-location">Watsons Bay (Australia)</span>
-				</div>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
 		
 		<div class="thing-to-do-feeder has-image yui3-u">
 					<img src="http://www.thingdoer.com/things-to-do-photos/7/70_s.jpg" alt="Swim in Sydney Harbour thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/158/swim-in-sydney-harbour" title="Swim in Sydney Harbour">Swim in Sydney Harbour</a></span>
 					<span class="thing-feeder-location">NSW (Australia)</span>
-				</div>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
 		
 		<div class="thing-to-do-feeder has-image yui3-u">
-					<img src="http://www.thingdoer.com/things-to-do-photos/7/74_s.jpg" alt="Riverside Beers at the Ivory thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/162/riverside-beers-at-the-ivory" title="Riverside Beers at the Ivory">Riverside Beers at the Ivory</a></span>
-					<span class="thing-feeder-location">Tweed Heads (Australia)</span>
-				</div>
+					<img src="http://www.thingdoer.com/things-to-do-photos/1/0/100_s.jpg" alt="Cider slushies at Sweethearts Rooftop BBQ thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/188/cider-slushies-at-sweethearts-rooftop-bbq" title="Cider slushies at Sweethearts Rooftop BBQ">Cider slushies at Sweethearts Rooftop BBQ</a></span>
+					<span class="thing-feeder-location">Potts Point (Australia)</span>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/1/0/101_s.jpg" alt="Possum spotting in Hyde Park thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/189/possum-spotting-in-hyde-park" title="Possum spotting in Hyde Park">Possum spotting in Hyde Park</a></span>
+					<span class="thing-feeder-location">Sydney (Australia)</span>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
 		</div>
 		<div class="module-related">
 		<a href="" title=""></a>
@@ -3139,9 +3057,9 @@ $('[id^=form-container-place] input#title').focus(function(){
 			       	});
 				}); 
 		   </script>
-		   <div id="footer">
+		   <div id="footer" class="yui3-g">
 		   		<div class="footer-things-to-do-container">
-		   			<div class="module footer-latest-collections" id="footer-latest-collections">
+		   			<div class="module footer-latest-collections yui3-u-1-4 " id="footer-latest-collections">
 	<div class="module-header">
 		<h3>Popular Locations</h3>
 	</div>
@@ -3159,17 +3077,13 @@ $('[id^=form-container-place] input#title').focus(function(){
 		<div class="module-footer">
 	
 	</div>
-</div><div class="module popular-searches" id="popular-searches">
+</div><div class="module yui3-u-1-4" id="yui3-u-1-4">
 	<div class="module-header">
 		<h3>Popular searches</h3>
 	</div>
 	<div class="module-content yui3-g">
 		<ul class="yui3-u-1">
-	<li><a href="/find-things-to-do/?like=Sydney" title="Sydney">Sydney</a></li>
 	<li><a href="/find-things-to-do/?like=food" title="food">food</a></li>
-	<li><a href="/find-things-to-do/?like=kids" title="kids">kids</a></li>
-	<li><a href="/find-things-to-do/?like=walks" title="walks">walks</a></li>
-	<li><a href="/find-things-to-do/?like=Shop" title="Shop">Shop</a></li>
 </ul>	</div>
 		<div class="module-related">
 		<a href="" title=""></a>
@@ -3177,7 +3091,7 @@ $('[id^=form-container-place] input#title').focus(function(){
 		<div class="module-footer">
 	
 	</div>
-</div>		   			<div class="module footer-things-to-do">
+</div>		   			<div class="module footer-things-to-do yui3-u-1-4">
 		   				<div class="header">
 		   					<h2>Things to do by budget</h2>
 		   				</div> <!--  // .header -->
@@ -3191,7 +3105,7 @@ $('[id^=form-container-place] input#title').focus(function(){
 		   						   					</ul>
 		   				</div> <!-- // .content -->
 		   			</div>
-		   			<div class="module footer-things-to-do">
+		   			<div class="module footer-things-to-do yui3-u-1-4">
 		   				<div class="header">
 		   					<h2>How's the weather?</h2>
 		   				</div> <!--  // .header -->
@@ -3201,33 +3115,35 @@ $('[id^=form-container-place] input#title').focus(function(){
 		   						   						<li><a href="/find-things-to-do/?like=&weathers[]=8" title="Things to do on a good weather day">Things to do in good weather</a></li>
 		   						   					</ul>
 		   				</div> <!-- // .content -->
-		   			</div> <!-- // .footer-things-to-do-container -->
-		   		</div>
-	    		<div class="yui3-g" id="social-about-links">
-	    			<div class="yui3-u-2-5">
-	    				<div class="find-us">
-							<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
-								<a class="addthis_button_facebook_follow" addthis:userid="thingdoer"></a>
-								<a class="addthis_button_twitter_follow" addthis:userid="thingdoerdotcom"></a>
-								<a class="addthis_button_google_follow" addthis:userid="thingdoer"></a>
-								<a class="addthis_button_tumblr_follow" addthis:userid="thingdoer"></a>
+		    		<div class="yui3-g" id="social-about-links">
+		    			<div class="yui3-u-2-5">
+		    				<div class="find-us">
+								<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+									<a class="addthis_button_facebook_follow" addthis:userid="thingdoer"></a>
+									<a class="addthis_button_twitter_follow" addthis:userid="thingdoerdotcom"></a>
+									<a class="addthis_button_google_follow" addthis:userid="thingdoer"></a>
+									<a class="addthis_button_tumblr_follow" addthis:userid="thingdoer"></a>
+								</div>
 							</div>
-						</div>
-						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-519e00c959f2644e"></script>
-						<!-- AddThis Follow END -->	    			
-	    			</div>	    		
-	    			<div class="yui3-u-3-5">
-	    				<!-- <div class="twitter-feed">
-	    					<p>Twitter feed goes here</p>
-	    				</div> -->
-	    			</div>
-	    		</div>
-	    		<div class="footer-links">
-	    		<span id="privacy-policy" style="float:right;"><a href="http://www.iubenda.com/privacy-policy/428589" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></span>
-	    		<p>Copyright Thingdoer 2014</p>
-	    		</div>
+							<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-519e00c959f2644e"></script>
+							<!-- AddThis Follow END -->	    			
+		    			</div>	    		
+		    			<div class="yui3-u-3-5">
+		    				<!-- <div class="twitter-feed">
+		    					<p>Twitter feed goes here</p>
+		    				</div> -->
+		    			</div>
+		    		</div>
+	    		</div> <!-- // .footer-things-to-do-container -->
+		   		</div>
 	       </div> <!-- // #footer -->
 	    </div> <!-- // #page -->
+	    <div id="page-footer">
+	    	<div class="footer-links">
+    			<span id="privacy-policy" style="float:right;"><a href="http://www.iubenda.com/privacy-policy/428589" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></span>
+    			<p>Copyright Thingdoer 2014</p>
+    		</div> <!-- // .footer-links -->
+		</div> <!-- // #page-footer -->
 	    <div id="modal-overlay">
 	    	
 	    </div> 

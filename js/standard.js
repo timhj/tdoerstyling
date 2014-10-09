@@ -123,7 +123,9 @@ var thingInput = {
 				}
 				thingInput.checkPriceInput();
 			});
-			
+//			$('#weblink-wrappers input#url').change(function () {
+//				if($(this).val())
+//			}			
 		}
 }
 
@@ -302,3 +304,29 @@ function StretchImages() {
         StretchImage(div, img);
     });
 }
+
+//var browserLocation {
+//	getLocation: function(callback) {
+//		if (navigator.geolocation) {
+//			navigator.geolocation.getCurrentPosition(callback);
+//		} else {
+//			console.log('Geolocation not supported by this browser');
+//		}
+//	},
+//	showError: function(error) {
+//	    switch(error.code) {
+//	        case error.PERMISSION_DENIED:
+//	            return "User denied the request for Geolocation."
+//	            break;
+//	        case error.POSITION_UNAVAILABLE:
+//	            return "Location information is unavailable."
+//	            break;
+//	        case error.TIMEOUT:
+//	            return "The request to get user location timed out."
+//	            break;
+//	        case error.UNKNOWN_ERROR:
+//	            return "An unknown error occurred."
+//	            break;
+//	    }
+//	}
+//}
