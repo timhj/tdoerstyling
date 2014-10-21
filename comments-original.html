@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Possum spotting in Hyde Park</title>
+        <meta name='description' content="Possums are a great part of the Aussie wildlife. Not to be confused with the American rat like opossum, these cute furry." />
+      	<meta name='canonical' content='http://www.thingdoer.com/thing/view/189/possum-spotting-in-hyde-park' />
+      	<meta name='og:image' content='http://www.thingdoer.com/things-to-do-photos/1/0/101_m.jpg' />
+  
+        <meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+        <meta name="viewport" content="width=device-width">
+        
+		        <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssnormalize/cssnormalize-min.css">
+    	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    	        <script type='text/javascript' src="http://code.jquery.com/jquery-latest.min.js"></script>
+                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&libraries=places&sensor=true"></script>
+                <script type='text/javascript' src="./js/standard.js"></script>
+        <script type='text/javascript' src="./js/modernizr.js"></script>
+        <script type='text/javascript' src="./js/timepicker.js"></script>
+        <script type='text/javascript' src="./js/rangeinput.js"></script>
+        <script type='text/javascript' src="./js/aspect-correct.js"></script>
+        <script type='text/javascript' src="./js/jquery-ui-1.10.3.custom.min.js"></script>
+    	<script type='text/javascript' src="http://yui.yahooapis.com/3.9.1/build/yui/yui-min.js"></script>
+    			<link rel="stylesheet" type="text/css" href="http://dev.thingdoer.sworx.com.au/css/thingdoer.css">
+		<link rel="stylesheet" type="text/css" href="http://dev.thingdoer.sworx.com.au/css/thingdoer.responsive.css">
+		<script type="text/javascript" src="http://dev.thingdoer.sworx.com.au/js/thingdoer.script.js"></script>		
+		<link rel="stylesheet" type="text/css" href="./css/hack-fixes.css">
+		<script type="text/javascript" src="http://cdn.embed.ly/jquery.embedly-3.1.1.min.js"></script>
+        		<script type="text/javascript">
+		  // google async snippet initialise
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-41773188-1']);
+		  _gaq.push(['_setDomainName', 'thingdoer.com']);
+		  _gaq.push(['_trackPageview']);
+		
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			// enabling ad data tracking
+		    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+		    		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+		
+		</script>
+    </head>
+   
+    <body class="thing">
+    	<script type="text/javascript">
+    	$(document).ready(function() {$("a.embedly").embedly({key: "ae939a95a93d4b3983434469490ffc3d",query: {maxwidth: function(){return $(".module.link .module-content ul li").width();}}})		
+			if(!Modernizr.inputtypes.time) {
+				$('input[type=time]').timePicker(); 
+			}
+			if(!Modernizr.inputtypes.range) {
+				$(':range').rangeinput();
+			}
+			$('span#close-modal,#modal-overlay').click(function(){
+				$('#modal-overlay,#modal-window').fadeOut();
+			});
+			$(".image-cropper img").each(function() {
+				$(this).load(function() {
+				    FixImage(false, $(this).closest('div'), this); // fix the aspect ration on the image relative to its closest parent div
+				}).each(function(){
+					if(this.complete) {
+						$(this).trigger('load');
+					}
+				});
+			});
+			$('.thing-to-do-feeder.has-image').each(function(){
+			$(this).find('img.thumbnail').wrap('<a href="'+$(this).find('span.thing-feeder-title a').attr('href')+'"></a>');				
+			});
+			$('.things-to-do-wrapper .thing-single:has(img.promo),.nearby-things .thing-single:has(img.promo)').each(function(){
+				$(this).find('img.promo').wrap('<a href="'+$(this).find('h2 a').attr('href')+'"></a>');				
+			});
+			
+    	});
+    	function modal(info_type,fragment,header_and_content){
+			info_type = typeof info_type !== 'undefined' ? info_type : false;
+			fragment = typeof fragment !== 'undefined' ? fragment : false;
+    		header_and_content = typeof header_and_content !== 'undefined' ? header_and_content : 'true';
+    		$.ajax({
+    			url: '/autocomplete/phrase/',
+        		data: { term: info_type,
+            			header_and_content: header_and_content,
+            			fragment: fragment
+        		},
+        		success: function ( data ) {
+        			output = JSON.parse(data);
+    				$('#modal-window .modal-header h2').html(output.heading);
+    	    		$('#modal-window .modal-content').html(output.content);
+    			},
+    			});
+    		$('#modal-overlay,#modal-window').fadeIn();
+		}
+		
+    	</script>
+    	<div id="page">
+    		<div id="header">
+    			<div id="things-to-do-links" class="yui3-g">
+    				<span class="yui3-u-1-3" id="logo-title">thingdoer <sup>186</sup></span>
+    				<span class="welcome-back yui3-u-2-3">
+    					    				<a href="/" title="Things to do" class="">Things to do</a>  
+
+	    				    				<a href="/find-things-to-do/" title="Browse things" class="">Browse things</a>  
+
+	    				    				<a href="/thing/edit/" title="Add things" class="">Add things</a>  
+
+	    			    										Welcome back <a href="/user/profile">timhj</a> - (<em>530</em>) 
+						<!-- <span id="notification-indicator" class="active">FLAG_ICON</span> --><a href="/user/logout">logout</a> 
+					 
+					</span> <!-- // welcome-back -->
+					<span class="yui3-u">
+	    				<!-- // left float top bar -->
+    				</span>
+    			</div>
+    			<div id="main-search-box" class="yui3-g">
+    				<!-- <div class="logo yui3-u-3-8">
+    					<a href="/" title="things to do"><span class="logo-image-will-replace">thingdoer</span></a>
+    				</div> -->
+    				<div id="search-inputs" class="yui3-u-1">
+    					<div class="content">
+    					     					<div class="search-title">Find something to do</div>
+    					 	    					<form action="/find-things-to-do/" method="get">
+		    					<input type="text" placeholder="E.G. Food things to do in Melbourne, Victoria" name="like" class="yui3-u-4-5" />
+		    					<button type="submit" class="button yui3-u-1-5">search</button>
+		    				</form>
+    					</div>
+	    				<div class="footer">
+	    				 	    					<!--Popular searches: -->
+	    						    						    					<a href="/find-things-to-do/?like=sydney">Things to do in sydney</a>,
+	    						    					<a href="/find-things-to-do/?like=walks">Things to do like walks</a>,
+	    						    					<a href="/find-things-to-do/?like=food">Things to do for food</a>,
+	    						    					
+	    				</div> <!-- // .footer -->
+	    				<a href="#" class="advance-search">Advanced Search</a>
+	    				    				</div>
+    			</div> <!-- // #main-search-box -->
+	    		    		</div> <!-- // #header -->
+    		<div class="block yui3-g">
+	    		<div id="content-wrapper" class="yui3-u-2-3">
+	    				    		<div class="content">
+				    	<div class="main-heading">
+				    		<h1>Possum spotting in Hyde&nbsp;Park</h1>
+				    	</div> <!-- // .main-heading -->
+				    					    					    	<div class="user-notifications">
+																		    	</div> <!-- // #user-notifications -->
+				       				       	
+	<div class="yui3-g" id="thing-view-block">
+		<div class="yui3-u-1" id="main-thing-column">
+					<div class="main-image-holder">
+								<img src="http://www.thingdoer.com/things-to-do-photos/1/0/101.jpg" alt="Possum spotting in Hyde Park by timhj" class="main-image" />				<div class="prev-photo"></div>
+				<div class="next-photo"></div>
+				<div class="main-image-caption"><p><q>Possum in Hyde park</q></p></div>
+							</div>
+				 <!-- </div> /* line 140 in view-changes? */ -->
+			<div class="yui3-g" id="photo-description">
+				<div class="yui3-u-1-2" id="under-photo-holder">
+					<div>
+						<div class="module-header">
+							<h2>About</h2>
+						</div>
+					<div class="yui3-u-1">
+						<p class="description">
+							Possums are a great part of the Aussie wildlife. Not to be confused with the American rat like opossum, these cute furry critters are fun to find in trees and doing so will keep the kids entertained for a while.<br />
+<br />
+If you've got a torch you can make a game out of it spotting as many as you can.<br />
+<br />
+There are loads of possums to be found in the Hyde Park trees after the sun goes down. They're lazing around in the tree branches waiting for some snacks.<br />
+<br />
+Start at the Liverpool st end of the park and make your way up to the fountain.<br />
+<br />
+Great if you're in town and want to snap a pic with a possum - don't try and cuddle on though, they are wild animals!!						</p>
+					</div> <!-- // first blurb -->
+					
+					<div class="yui3-u-1">
+						<div id="thing-rating">
+							<span class="rating 5">
+	<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>	</span>
+							<span class="num-ratings">
+								2 ratings							</span>
+						</div>
+						<div id="comments-link">
+							<a href="#comments">
+															2 comments														</a>
+						</div>
+					</div> <!-- // first side column -->
+					<div class="yui3-u-1">
+						<div class="module share-tools">
+							<div class="module-content addthis_toolbox addthis_default_style addthis_32x32_style">
+								<a class="addthis_button_facebook"></a>
+								<a class="addthis_button_tumblr"></a>
+								<a class="addthis_button_reddit"></a>
+								<a class="addthis_button_google_plusone_share"></a>
+								<a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+								<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=undefined"></script>
+							</div>
+						</div> <!-- //.share-tools -->
+												<div class="module places">
+							<div class="module-header">
+								<h3>Locations</h3>
+							</div>
+							<div class="module-content">
+								<div class="yui3-u-1">
+								<script type="text/javascript">
+var map;
+var marker = {};
+var waiting = false;
+var active_place_form = '1';
+function initializeMap()
+{
+	function attachInfoWindow(marker,i) {
+		var infowindow = new google.maps.InfoWindow(
+			{   content: '<em>'+marker.title+'</em><br />'+contents[i],
+				maxWidth: 250
+		    	//size: new google.maps.Size(50,50)
+			});
+			google.maps.event.addListener(marker, 'click', function() {
+				if (infowindow.getMap()) { 
+					infowindow.close(map,marker);
+				} else {
+					infowindow.open(map,marker);
+					marker.setAnimation(google.maps.Animation.BOUNCE);
+					setTimeout('marker['+i+'].setAnimation(null)',900);
+				}
+			});
+		bounds.extend(marker.position);
+	}
+		 
+	var mapProp = {
+		zoom:15,
+		center: new google.maps.LatLng(-33.867489,151.206985),
+		mapTypeId:google.maps.MapTypeId.ROADMAP	};
+	map=new google.maps.Map(document.getElementById("google-map")
+			,mapProp);
+	var bounds = new google.maps.LatLngBounds();
+
+	
+
+	
+	var lats = ["-33.876644"];
+    var longs = ["151.210785"];
+    var titles = ['Hyde Park'];
+    var contents = ["175 Liverpool Street, Sydney NSW 2000, Australia"];
+
+	for(var i = 0; i < 1; i++) {
+		marker[i] = new google.maps.Marker({
+			position:new google.maps.LatLng(lats[i],longs[i]),
+			title: titles[i],
+			icon: 'http://thingdoer.dev/media/img/markers/33/33-'+parseFloat(i+1)+'.png',
+			/*shadow: 'http://thingdoer.dev/media/img/markers/33/33-shadow.png',*/
+			animation: google.maps.Animation.DROP,
+			
+		});
+			attachInfoWindow(marker[i],i);
+		marker[i].setMap(map);
+	}
+    map.fitBounds(bounds);
+    map.panToBounds(bounds);
+    var listener = google.maps.event.addListenerOnce(map, "idle", function() { 
+		if (map.getZoom() > 17) map.setZoom(17);  
+	}); 
+} // initialiase map
+
+	function openMarker(i){
+	   google.maps.event.trigger(marker[i],'click');
+	};
+
+	$('.clickable-marker').click(function(){
+		var marker_id = parseFloat($(this).attr('id').substr(7))-1;
+		location.hash = "#google-map"; 
+		openMarker(marker_id);
+	});
+google.maps.event.addDomListener(window, 'load', initializeMap);
+</script>
+	<div class="yui3-u-1" id="google-map" style="width:100%;height:250px;"></div>
+						  		</div>
+								<ul>
+																	<li>
+									<em>Hyde Park</em><br/>
+										175 Liverpool Street, Sydney NSW 2000, Australia									</li>
+																</ul>
+							</div> <!-- // .module-content -->
+						</div> <!-- // .module .places -->	
+												<p class="buttons">
+							<input type="button" name="do_this_thing" id="do_this_thing" value="Do this thing">
+							<input type="button" name="done_this_thing" id="done_this_thing" value="I've done it">
+							<!-- <button type="button" name="problem_with_thing" id="problem_with_thing">I have a problem with this thing</button> -->
+						</p>
+						<script type="text/javascript">
+							var wait = false;
+						
+							$('button#do_this_thing,button#done_this_thing').click(function(){
+								if(!wait){
+									wait = true;
+									var id = $(this).attr('id');
+									var action = (id == 'done_this_thing') ? 'done_it' : 'want_to_do_it';
+		
+									$.get('/ajax/doit/?id=189&action='+action, '', function(response) {
+										var old_text = $('#'+id).html();
+							    		$('#'+id).html(response);
+							    		setTimeout(function(){
+							    			$('#'+id).html(old_text);
+							    			wait = false;
+										},2000);
+									});
+								}	
+							});
+							$('#thing-view-block .main-image-holder a').hover(function(){
+								$('#thing-view-block .main-image-holder .next-photo').html('<p>^ Next photo ^</p>');
+								$('#thing-view-block .main-image-holder .next-photo').fadeIn();
+							},function(){
+								$('#thing-view-block .main-image-holder .next-photo').fadeOut();
+							});
+						</script>
+					</div> <!-- // column2  -->
+				</div> <!-- // #under-photo-holder -->
+			</div>
+			<div class="yui3-u-1-2" id="auxilliary-information"> 
+				<div class="module about-thing">
+					<div class="module-header">
+						<h2>Need to know</h2>
+					</div>
+					<div class="module-content">
+						<div class="info-wrapper preparation no">
+							Possum spotting in Hyde Park requires <strong>no</strong> effort to do						</div>
+						<div class="info-wrapper cost">
+							Possum spotting in Hyde Park is a <strong>free</strong> price thing to do						</div>
+						<div class="info-wrapper time-to-do">
+							The best time to <strong>possum spotting in hyde park</strong> is between <strong>6PM</strong> and <strong>11PM</strong>
+						</div>
+						<div class="info-wrapper light-rain">
+							Possum spotting in Hyde Park is suitable for							<strong>all weather							</strong>
+							conditions.
+						</div>
+					</div> <!--  // .module-content -->
+				</div> <!-- // .module.about-thing -->
+				
+								<p class="tags">
+					Described as 
+										Family, Nature, Photo opportunity				</p>
+												<div class="module collections">
+					<div class="module-header">
+						<h3>Related collections</h3>
+					</div>
+					<div class="module-content">
+						<ul>
+													<li>
+								<a href="/collections/things-to-do-in-surry-hills/" title="Things To Do In Surry Hills"><em>Things To Do In Surry Hills</em></a>
+							</li>
+													<li>
+								<a href="/collections/things-to-do-in-sydney/" title="Things to do in Sydney"><em>Things to do in Sydney</em></a>
+							</li>
+												</ul>
+					</div>
+				</div> <!-- // .module.collections -->		
+								<div class="module submitted-by">
+					<div class="module-header">
+						<h3>Submitted by</h3>
+					</div>
+					<div class="module-content">
+						<span class="name">
+							<span>timhj</span> (530)
+						</span> <!-- // .name -->
+					</div>
+									</div> <!-- // .submitted-by -->
+								<div class="module items">
+					<div class="module-header">
+						<h3>Things you will need</h3>
+					</div>
+					<div class="module-content">
+						<ol>
+													<li><a target="_blank" href="http://www.amazon.com/gp/search?ie=UTF8&camp=1789&creative=9325&index=aps&keywords=Camera&linkCode=ur2&tag=toomanybirthd-20">Camera</a><img src="http://www.assoc-amazon.com/e/ir?t=toomanybirthd-20&l=ur2&o=1" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></li>
+													<li><a target="_blank" href="http://www.amazon.com/gp/search?ie=UTF8&camp=1789&creative=9325&index=aps&keywords=Torch&linkCode=ur2&tag=toomanybirthd-20">Torch</a><img src="http://www.assoc-amazon.com/e/ir?t=toomanybirthd-20&l=ur2&o=1" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /></li>
+												</ol>
+					</div>
+				</div> <!-- // .module .items -->
+										</div> <!-- // #auxilliary-information -->
+			</div>
+		</div> <!-- // #photo-description -->
+	</div> <!-- // #thing-view-block -->
+				       <div class="module nearby-things" id="nearby-things">
+	<div class="module-header">
+		<h3>Other things near Sydney, NSW (Australia)</h3>
+	</div>
+	<div class="module-content yui3-g">
+		
+<div class="thing-single yui3-u-1-4">
+			<span class="distance">
+			<1km away		</span>
+		
+	
+			<div class="image-promo-wrapper promo">
+			<div class="image-box">
+				<div class="image-cropper">
+				<img src="http://www.thingdoer.com/things-to-do-photos/2/2/222_s.jpg" alt="Things To Do In Surry Hills promo" class="promo" />				</div>
+			</div>
+		</div>
+		<div class="thing-header">
+		<h2><a href="/collections/things-to-do-in-surry-hills/" title="Things To Do In Surry Hills">Things To Do In Surry Hills</a></h2>
+	</div> <!-- // .thing-content -->
+	<div class="thing-content">
+		<div class="short-description">
+			Inner Sydney's hub of art, music, food & drink, Surry Hills is one of the...		</div>
+		<div class="rating-display">
+					</div>
+		<div class="view-display">
+					</div>
+				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+		
+	
+	</div> <!-- // .thing-content -->
+</div>
+<div class="thing-single yui3-u-1-4">
+			<span class="distance">
+			<1km away		</span>
+		
+	
+			<div class="image-promo-wrapper promo">
+			<div class="image-box">
+				<div class="image-cropper">
+				<img src="http://www.thingdoer.com/things-to-do-photos/6/61_m.jpg" alt="Stars on the roof (War memorial) promo" class="promo" />				</div>
+			</div>
+		</div>
+		<div class="thing-header">
+		<h2><a href="/thing/view/145/stars-on-the-roof-war-memorial" title="Stars on the roof (War memorial)">Stars on the roof (War memorial)</a></h2>
+	</div> <!-- // .thing-content -->
+	<div class="thing-content">
+		<div class="short-description">
+			The war memorial in the park at the end of hyde park is well worth...		</div>
+		<div class="rating-display">
+			<span class="rating 0">
+		<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
+		</div>
+		<div class="view-display">
+			Views: <span class="view-count">21</span>
+		</div>
+				<span class="thing-feeder-location">Sydney, NSW (Australia)</span>
+		
+	</div> <!-- // .thing-content -->
+</div> <!-- // .thing-single -->
+<div class="thing-single yui3-u-1-4">
+			<span class="distance">
+			<1km away		</span>
+		
+	
+			<div class="image-promo-wrapper promo">
+			<div class="image-box">
+				<div class="image-cropper">
+				<img src="http://www.thingdoer.com/things-to-do-photos/2/8/283_m.jpg" alt="Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills promo" class="promo" />				</div>
+			</div>
+		</div>
+		<div class="thing-header">
+		<h2><a href="/thing/view/316/watch-a-movie-whilst-drinking-a-cocktail-at-the-golden-age-surry-hills" title="Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills">Watch a movie whilst drinking a cocktail at the Golden Age, Surry Hills</a></h2>
+	</div> <!-- // .thing-content -->
+	<div class="thing-content">
+		<div class="short-description">
+			Once the home of Paramount Pictures in the 1940s, the Golden age now comes complete...		</div>
+		<div class="rating-display">
+			<span class="rating 0">
+		<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
+		</div>
+		<div class="view-display">
+			Views: <span class="view-count">137</span>
+		</div>
+				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+		
+	</div> <!-- // .thing-content -->
+</div> <!-- // .thing-single -->
+<div class="thing-single yui3-u-1-4">
+			<span class="distance">
+			<1km away		</span>
+		
+	
+		<div class="thing-header">
+		<h2><a href="/thing/view/176/tasting-menu-at-nomad-restaurant" title="Tasting menu at Nomad restaurant">Tasting menu at Nomad restaurant</a></h2>
+	</div> <!-- // .thing-content -->
+	<div class="thing-content">
+		<div class="short-description">
+			Try the tasting menu at Nomad with an empty stomach, because you're going to get...		</div>
+		<div class="rating-display">
+			<span class="rating 0">
+		<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
+		</div>
+		<div class="view-display">
+			Views: <span class="view-count">26</span>
+		</div>
+				<span class="thing-feeder-location">Surry Hills, NSW (Australia)</span>
+		
+	</div> <!-- // .thing-content -->
+</div> <!-- // .thing-single -->	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module add-your-ratingcomment" id="add-your-ratingcomment">
+	<div class="module-header">
+		<h3>Add your rating/comment</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<div id="comment_form" class="yui3-form yui3-u-1">
+	<div class="user-notifications">
+	</div> <!-- // #user-notifications -->
+	<input type="hidden" name="comment_type" value="comments" />
+	<div class="title">
+		<label for="title">Title</label>
+		<span class="more-info">Give your comment a title</span>
+		<input type="text" name="title" class="input-item">
+	</div>
+	<div class="rating">
+		<div class="star-holder">
+			<span class="1-star">✭</span><span class="2-star">✭</span><span class="3-star">✭</span><span class="4-star">✭</span><span class="5-star">✭</span>
+		</div>
+		<div class="input-holder">
+			<label for="rating">Rating</label>
+			<span class="more-info">Give this thing a rating out of 5</span>
+		</div>
+		<input type="hidden" name="rating" value="2.5" class="input-item">
+	</div>
+	<div class="comment">
+		<label for="comment">Comment</label>
+		<span class="more-info">Let us know all about your experience with this thing!</span>
+		<textarea rows="5" name="comment" id="comment" class="input-item" placeholder="Comment"></textarea>
+	</div>
+	<div class="submit">
+			<button type="button" id="save_button" name="submit" value="Add comment">Add comment</button>
+	</div>
+</div>
+<script type="text/javascript">
+	var star_value = 0;
+	var has_voted = 0; 
+	$('#comment_form .rating span[class*="star"]').hover(function(){
+		star_value = $(this).attr('class').substr(0,1);
+		$('#comment_form .rating span[class*="star"]').removeClass('active');
+		for(i=1;i<=star_value;i++){
+			$('#comment_form .rating span.'+i+'-star').addClass('active');
+		} 
+	}, function(){
+		if(has_voted == 1){
+			$('#comment_form .rating span[class*="star"]').removeClass('active');
+			for(i=1;i<=parseFloat($('input[name=rating]').val());i++){
+				$('#comment_form .rating span.'+i+'-star').addClass('active');
+			} 
+		} else {
+			$('#comment_form .rating span[class*="star"]').removeClass('active');
+		}
+	});
+	$('#comment_form .rating span[class*="star"]').click(function(){
+		$('input[name=rating]').val(star_value);
+		has_voted = 1;
+	});
+	$('#comment_form #save_button').click(function(){
+		$('div.user-notifications').slideDown();
+		var serialisedComment = $('#comment_form .input-item').serialize();
+		$.post('/comment/submit/189', serialisedComment, function(response) {
+    		$('div.user-notifications').html(response);
+			setTimeout(function(){
+    			$('div.user-notifications').slideUp();
+			},2000);
+		});	
+	});
+</script>
+	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module comments" id="comments">
+	<div class="module-header">
+		<h3>2 Comment(s) on 'Possum spotting in Hyde Park'</h3>
+	</div>
+	<div class="module-content yui3-g">
+			<div class="item comment yui3-u-1">
+		<div class="item-header">
+			<h4>Great fun with kids</h4>
+		</div>
+		<div class="item-subheader">
+			<span class="rating 5">✭✭✭✭✭</span> 
+			<span class="username">ayman.labadi2</span> @ 
+			<span class="time-posted">18 January 2014</span>
+		</div>
+		<div class="item-content">
+			<p>The kids loved this as a game!</p>
+		</div>
+		<div class="item-footer">
+			<span id="c35" class="ajax flag-comment">Flag comment for review</span>
+			<div class="user-notifications">
+			</div> <!-- // #user-notifications -->
+		</div>
+	</div>
+	<div class="item comment yui3-u-1">
+		<div class="item-header">
+			<h4>So many possums!</h4>
+		</div>
+		<div class="item-subheader">
+			<span class="rating 5">✭✭✭✭✭</span> 
+			<span class="username">lovebug</span> @ 
+			<span class="time-posted">20 January 2014</span>
+		</div>
+		<div class="item-content">
+			<p>We found at least ten possums! </p>
+		</div>
+		<div class="item-footer">
+			<span id="c39" class="ajax flag-comment">Flag comment for review</span>
+			<div class="user-notifications">
+			</div> <!-- // #user-notifications -->
+		</div>
+	</div>
+<script type="text/javascript">
+$('.comment .flag-comment').click(function(){
+	right_box = $(this).parent().find('div.user-notifications');
+	$(right_box).slideDown();
+	var c_id = $(this).attr('id').substr(1); 
+	$.post('/comment/flag/'+c_id, '', function(response) {
+		$(right_box).html(response);
+		setTimeout(function(){
+			$(right_box).slideUp();
+		},2000);
+	});	
+});
+</script>	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div>				       
+			       </div> <!-- // .content -->
+			    </div> <!-- // .content-wrapper -->
+			    <div id="things-to-do-rhs" class="yui3-u-1-3">
+			    	<div class="module latest-things" id="latest-things">
+	<div class="module-header">
+		<h3>Latest things</h3>
+	</div>
+	<div class="module-content yui3-g">
+				
+		<div class="thing-to-do-feeder no-image yui3-u">
+					<span class="thing-feeder-title"><a href="/thing/view/322/title" title="Title">Title</a></span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/289_s.jpg" alt="Rottnest sunset spot thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/321/rottnest-sunset-spot" title="Rottnest sunset spot">Rottnest sunset spot</a></span>
+					<span class="thing-feeder-location">Rottnest Island (Australia)</span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/287_s.jpg" alt="Sandwich bliss @ Lucky Pickle thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/320/sandwich-bliss-lucky-pickle" title="Sandwich bliss @ Lucky Pickle">Sandwich bliss @ Lucky Pickle</a></span>
+					<span class="thing-feeder-location">Surry Hills (Australia)</span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/286_s.jpg" alt="Discover some art after hours thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/319/discover-some-art-after-hours" title="Discover some art after hours">Discover some art after hours</a></span>
+					<span class="thing-feeder-location">Sydney (Australia)</span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/2/8/285_s.jpg" alt="Pick up some fresh produce at Eveleigh  Farmers’ Market thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/318/pick-up-some-fresh-produce-at-eveleigh-farmers-market" title="Pick up some fresh produce at Eveleigh  Farmers’ Market">Pick up some fresh produce at Eveleigh  Farmers’ Market</a></span>
+					<span class="thing-feeder-location">Eveleigh (Australia)</span>
+					<span class="rating 0">
+								<i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i>			</span>
+		</div>
+		</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module most-popular-things" id="most-popular-things">
+	<div class="module-header">
+		<h3>Most popular things</h3>
+	</div>
+	<div class="module-content yui3-g">
+				
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/4/46_s.jpg" alt="Govindas dinner and lay down movie thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/28/govindas-dinner-and-lay-down-movie" title="Govindas dinner and lay down movie">Govindas dinner and lay down movie</a></span>
+					<span class="thing-feeder-location">Darlinghurst (Australia)</span>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/3/38_s.jpg" alt="Get the ferry to Doyles thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/129/get-the-ferry-to-doyles" title="Get the ferry to Doyles">Get the ferry to Doyles</a></span>
+					<span class="thing-feeder-location">Watsons Bay (Australia)</span>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/7/70_s.jpg" alt="Swim in Sydney Harbour thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/158/swim-in-sydney-harbour" title="Swim in Sydney Harbour">Swim in Sydney Harbour</a></span>
+					<span class="thing-feeder-location">NSW (Australia)</span>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/1/0/100_s.jpg" alt="Cider slushies at Sweethearts Rooftop BBQ thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/188/cider-slushies-at-sweethearts-rooftop-bbq" title="Cider slushies at Sweethearts Rooftop BBQ">Cider slushies at Sweethearts Rooftop BBQ</a></span>
+					<span class="thing-feeder-location">Potts Point (Australia)</span>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
+		
+		<div class="thing-to-do-feeder has-image yui3-u">
+					<img src="http://www.thingdoer.com/things-to-do-photos/1/0/101_s.jpg" alt="Possum spotting in Hyde Park thumbnail" class="thumbnail" />					<span class="thing-feeder-title"><a href="/thing/view/189/possum-spotting-in-hyde-park" title="Possum spotting in Hyde Park">Possum spotting in Hyde Park</a></span>
+					<span class="thing-feeder-location">Sydney (Australia)</span>
+					<span class="rating 5">
+				<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>							</span>
+		</div>
+		</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module facebook-us" id="facebook-us">
+	<div class="module-header">
+		<h3>Facebook us</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<iframe src="//www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fthingdoer&amp;width=100&amp;height=258&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%;" allowTransparency="true"></iframe>	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div>			    </div>
+			    <div id="block-footer"></div>
+		   </div> <!-- // .block -->
+	       <script type="text/javascript">
+	       		function do_it_again(){ 
+		       		$('#add_another').val('true'); 
+		       		$('#add_another').parents('form').submit(); 
+		       	}
+				// handles the auto complete for the items page 
+	       		$(function() {
+		       		function split( val ) {
+		       			return val.split( /,\s*/ );
+		       		}
+		       		function extractLast( term ) {
+		       			return split( term ).pop();
+		    	   	}
+			       	$( "div.item-wrappers #title" )
+		       		.bind( "keydown", function( event ) {
+			       		if ( event.keyCode === $.ui.keyCode.TAB && $( this ).data( "ui-autocomplete" ).menu.active ) {
+			       			event.preventDefault();
+			       		} else if(event.keyCode === 8 && this.value.length == 0) {
+			       			$('[id^="form-container-item"]:visible:last').slideUp(300,function(){
+				       			var restore_val = $('[id^="form-container-item"]:visible:last').find('input').val();
+			       				$('[id^="form-container-item"]:visible:last').find('input').focus().val('').val(restore_val);
+			       			});
+			       		}
+		       		})
+			       	.autocomplete({
+			       		source: function( request, response ) {
+			       			$.getJSON( '/autocomplete/item/', {
+			       				term: extractLast( request.term )
+			       			}, response );
+			       		},
+			       		search: function() {
+			       			// custom minLength
+			       			var term = extractLast(this.value);
+			       			if ( term.length < 2 ) {
+			       				return false;
+			       			} 
+			       		},
+			       		focus: function() {
+			       			// prevent value inserted on focus
+			       			return false;
+			       		},
+			       		select: function( event, ui ) {
+			    		   	this.value = ui.item.value;
+			    		   	$('[id^="form-container-item"]:hidden:first').slideDown().find('input').focus();
+			    		   	// ui-helper-hidden-accessible
+					       	return false;
+			    	   	}
+			       	});
+				}); 
+		   </script>
+		   <div id="footer" class="yui3-g">
+		   		<div class="footer-things-to-do-container">
+		   			<div class="module footer-latest-collections yui3-u-1-4 " id="footer-latest-collections">
+	<div class="module-header">
+		<h3>Popular Locations</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<ul class="yui3-u-1">
+	<li><a href="/collections/sydney-walks/" title="Sydney Walks">Sydney Walks</a></li>
+	<li><a href="/collections/rooftop-bars-in-sydney/" title="Rooftop Bars In Sydney">Rooftop Bars In Sydney</a></li>
+	<li><a href="/collections/jumps-into-sydney-harbour/" title="Jumps into sydney harbour">Jumps into sydney harbour</a></li>
+	<li><a href="/collections/things-to-do-in-surry-hills/" title="Things To Do In Surry Hills">Things To Do In Surry Hills</a></li>
+	<li><a href="/collections/things-to-do-in-byron-bay/" title="Things To Do In Byron Bay">Things To Do In Byron Bay</a></li>
+</ul>	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div><div class="module yui3-u-1-4" id="yui3-u-1-4">
+	<div class="module-header">
+		<h3>Popular searches</h3>
+	</div>
+	<div class="module-content yui3-g">
+		<ul class="yui3-u-1">
+</ul>	</div>
+		<div class="module-related">
+		<a href="" title=""></a>
+	</div>
+		<div class="module-footer">
+	
+	</div>
+</div>		   			<div class="module footer-things-to-do yui3-u-1-4">
+		   				<div class="header">
+		   					<h2>Things to do by budget</h2>
+		   				</div> <!--  // .header -->
+		   				<div class="content">
+		   					<ul>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=10" title="Things to do for under $10">Things to do for under $10</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=20" title="Things to do for under $20">Things to do for under $20</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=30" title="Things to do for under $30">Things to do for under $30</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=40" title="Things to do for under $40">Things to do for under $40</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&cost=50" title="Things to do for under $50">Things to do for under $50</a></li>
+		   						   					</ul>
+		   				</div> <!-- // .content -->
+		   			</div>
+		   			<div class="module footer-things-to-do yui3-u-1-4">
+		   				<div class="header">
+		   					<h2>How's the weather?</h2>
+		   				</div> <!--  // .header -->
+		   				<div class="content">
+		   					<ul>
+		   						   						   						<li><a href="/find-things-to-do/?like=&weathers[]=3" title="Things to do on a bad weather day">Things to do in bad weather</a></li>
+		   						   						<li><a href="/find-things-to-do/?like=&weathers[]=8" title="Things to do on a good weather day">Things to do in good weather</a></li>
+		   						   					</ul>
+		   				</div> <!-- // .content -->
+		    		<div class="yui3-g" id="social-about-links">
+		    			<div class="yui3-u-2-5">
+		    				<div class="find-us">
+								<div class="addthis_toolbox addthis_32x32_style addthis_default_style">
+									<a class="addthis_button_facebook_follow" addthis:userid="thingdoer"></a>
+									<a class="addthis_button_twitter_follow" addthis:userid="thingdoerdotcom"></a>
+									<a class="addthis_button_google_follow" addthis:userid="thingdoer"></a>
+									<a class="addthis_button_tumblr_follow" addthis:userid="thingdoer"></a>
+								</div>
+							</div>
+							<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-519e00c959f2644e"></script>
+							<!-- AddThis Follow END -->	    			
+		    			</div>	    		
+		    			<div class="yui3-u-3-5">
+		    				<!-- <div class="twitter-feed">
+		    					<p>Twitter feed goes here</p>
+		    				</div> -->
+		    			</div>
+		    		</div>
+	    		</div> <!-- // .footer-things-to-do-container -->
+		   		</div>
+	       </div> <!-- // #footer -->
+	    </div> <!-- // #page -->
+	    <div id="page-footer">
+	    	<div class="footer-links">
+    			<span id="privacy-policy" style="float:right;"><a href="http://www.iubenda.com/privacy-policy/428589" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "http://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script></span>
+    			<p>Copyright Thingdoer 2014</p>
+    		</div> <!-- // .footer-links -->
+		</div> <!-- // #page-footer -->
+	    <div id="modal-overlay">
+	    	
+	    </div> 
+	    <div id="modal-window">	
+	    	<div class="modal-header">
+	    		<span id="close-modal">x</span><h2 id="modal-heading"></h2>
+	    	</div>
+	    	<div class="modal-content">
+	    	
+	    	</div>
+	    </div> <!-- // #modal-window -->
+    </body>
+</html>
